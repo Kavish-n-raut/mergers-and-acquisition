@@ -102,11 +102,17 @@ def decode_access_token(token: str, *, secret: str | None = None) -> dict[str, A
 
 # --- Demo user store ----------------------------------------------------------
 
+# Each demo account's password is "<username>@100" (e.g. director -> director@100).
+def demo_password_for(username: str) -> str:
+    return f"{username.lower()}@100"
+
+
 @lru_cache(maxsize=1)
 def _demo_users() -> dict[str, dict[str, str]]:
-    settings = get_settings()
-    pw_hash = hash_password(settings.demo_password)
-    return {role: {"role": role, "password_hash": pw_hash} for role in DEMO_USERNAMES_BY_ROLE}
+    return {
+        role: {"role": role, "password_hash": hash_password(demo_password_for(role))}
+        for role in DEMO_USERNAMES_BY_ROLE
+    }
 
 
 def authenticate(username: str, password: str) -> str | None:

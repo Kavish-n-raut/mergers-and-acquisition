@@ -8,6 +8,7 @@ from app.core.auth import (
     authenticate,
     create_access_token,
     decode_access_token,
+    demo_password_for,
     hash_password,
     verify_password,
 )
@@ -39,16 +40,15 @@ def test_jwt_expiry_rejected():
 
 
 def test_authenticate_demo_user():
-    pw = get_settings().demo_password
-    assert authenticate("md", pw) == "md"
+    assert authenticate("md", "md@100") == "md"          # password is <username>@100
     assert authenticate("md", "nope") is None
-    assert authenticate("ghost", pw) is None
+    assert authenticate("md", demo_password_for("vp")) is None  # vp's password won't work for md
+    assert authenticate("ghost", "ghost@100") is None
 
 
 def test_login_endpoint_issues_usable_bearer_token():
     with TestClient(app) as c:
-        pw = get_settings().demo_password
-        resp = c.post("/api/v1/auth/login", json={"username": "vp", "password": pw})
+        resp = c.post("/api/v1/auth/login", json={"username": "vp", "password": "vp@100"})
         assert resp.status_code == 200
         token = resp.json()["access_token"]
         assert resp.json()["role"] == "vp"
@@ -62,7 +62,7 @@ def test_login_endpoint_issues_usable_bearer_token():
         assert ok.status_code == 200
 
         # ...but the analyst token cannot (403).
-        analyst_token = c.post("/api/v1/auth/login", json={"username": "analyst", "password": pw}).json()["access_token"]
+        analyst_token = c.post("/api/v1/auth/login", json={"username": "analyst", "password": "analyst@100"}).json()["access_token"]
         denied = c.post(
             "/api/v1/modules/m6/lbo",
             headers={"Authorization": f"Bearer {analyst_token}"},

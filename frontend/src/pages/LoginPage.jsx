@@ -44,7 +44,7 @@ export default function LoginPage({ onLogin }) {
           <span>Username (role)</span>
           <strong>analyst · associate · vp · director · md · admin</strong>
           <span>Password</span>
-          <strong>your DEMO_PASSWORD (default: changeme-demo)</strong>
+          <strong>your username + @100 (e.g. director@100)</strong>
         </div>
 
         <form className="login-form" onSubmit={handleSubmit}>
