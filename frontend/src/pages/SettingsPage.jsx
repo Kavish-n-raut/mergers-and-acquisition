@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getActiveDealMeta, getActiveReport, loadDemoWorkspace } from "../lib/dealUtils";
+import { getLlmHealth } from "../lib/api";
+
+const PROVIDER_LABELS = {
+  groq: "Groq (free)",
+  anthropic: "Anthropic (premium)",
+  local: "Local / Free",
+};
 
 export default function SettingsPage() {
   const meta = getActiveDealMeta();
   const report = getActiveReport();
+  const [aiProvider, setAiProvider] = useState("…");
+
+  useEffect(() => {
+    let cancelled = false;
+    getLlmHealth()
+      .then((h) => {
+        if (cancelled) return;
+        const p = h?.provider;
+        setAiProvider(p ? PROVIDER_LABELS[p] || p.charAt(0).toUpperCase() + p.slice(1) : "Local / Free");
+      })
+      .catch(() => { if (!cancelled) setAiProvider("Local / Free"); });
+    return () => { cancelled = true; };
+  }, []);
 
   return (
     <div className="page">
@@ -15,7 +35,7 @@ export default function SettingsPage() {
         <div className="panel-flat">
           <div className="section-title"><p className="eyebrow">Environment</p><h3>Workspace Mode</h3></div>
           <div className="detail-grid">
-            <div><span>AI Provider</span><strong>Local / Free</strong></div>
+            <div><span>AI Provider</span><strong>{aiProvider}</strong></div>
             <div><span>Premium Provider</span><strong>Anthropic Optional</strong></div>
             <div><span>Maps Provider</span><strong>{(import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "").trim() ? "OpenStreetMap default / Google optional" : "OpenStreetMap default"}</strong></div>
             <div><span>Active Deal</span><strong>{meta.dealName}</strong></div>

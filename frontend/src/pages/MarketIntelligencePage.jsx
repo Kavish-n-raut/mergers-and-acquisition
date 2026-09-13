@@ -3,6 +3,7 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { getCompanyProfile, searchCompanyMap, getCompaniesBBox } from "../lib/api";
 import { DEMO_DEAL, DEMO_RISKS, formatCurrency, getMarketIntelligence } from "../lib/dealUtils";
+import LeafletMarketMap from "../components/LeafletMarketMap";
 
 const tabs = [
   "Market Map",

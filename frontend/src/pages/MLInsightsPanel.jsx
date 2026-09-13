@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { getDealIntelligence } from '../lib/api';
 
 export default function MLInsightsPanel({ companyAFinancials, companyBFinancials, marketContext }) {
   const [result, setResult] = useState(null);
@@ -10,13 +10,17 @@ export default function MLInsightsPanel({ companyAFinancials, companyBFinancials
       return;
     }
 
-    axios.post('http://localhost:8010/api/v1/ml/deal-intelligence', {
+    let cancelled = false;
+    getDealIntelligence({
       company_a_financials: companyAFinancials,
       company_b_financials: companyBFinancials,
       market_context: marketContext,
     })
-      .then((response) => setResult(response.data.result))
-      .catch((err) => setError(err.message));
+      .then((data) => { if (!cancelled) setResult(data.result); })
+      .catch((err) => {
+        if (!cancelled) setError(err?.response?.data?.detail || err.message || 'Unable to load ML insights.');
+      });
+    return () => { cancelled = true; };
   }, [companyAFinancials, companyBFinancials, marketContext]);
 
   return (

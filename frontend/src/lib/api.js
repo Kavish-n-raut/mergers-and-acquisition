@@ -113,6 +113,11 @@ export async function getDealGenomeSummary() {
   return res.data;
 }
 
+export async function getDealIntelligence(payload) {
+  const res = await api.post("/api/v1/ml/deal-intelligence", payload);
+  return res.data;
+}
+
 // --- Free data sources (Finnhub, FinBERT/GDELT sentiment, USPTO, SEC EDGAR) ---
 export async function getFinnhubStatus() {
   const res = await api.get("/api/v1/market/finnhub/status");
