@@ -24,15 +24,23 @@ export default function HomePage() {
 
   const refresh = async () => {
     setError("");
-    try {
-      const [core, llm, rows] = await Promise.all([getHealth(), getLlmHealth(), listDeals(100)]);
-      setHealth(core);
-      setEngine(llm);
-      setDeals(Array.isArray(rows) ? rows : []);
-      setMeta(getActiveDealMeta());
-      setReport(getActiveReport());
-    } catch (e) {
-      setError(e?.response?.data?.detail || e.message || "Dashboard data is unavailable.");
+    // Independent calls: a single failure (e.g. a free-tier cold-start timeout)
+    // must not blank the whole dashboard. Each tile updates on its own success.
+    const [core, llm, rows] = await Promise.allSettled([
+      getHealth(),
+      getLlmHealth(),
+      listDeals(100),
+    ]);
+    if (core.status === "fulfilled") setHealth(core.value);
+    if (llm.status === "fulfilled") setEngine(llm.value);
+    if (rows.status === "fulfilled") setDeals(Array.isArray(rows.value) ? rows.value : []);
+    setMeta(getActiveDealMeta());
+    setReport(getActiveReport());
+
+    const failed = [core, llm, rows].find((r) => r.status === "rejected");
+    if (failed) {
+      const e = failed.reason;
+      setError(e?.response?.data?.detail || e?.message || "Some dashboard data is unavailable.");
     }
   };
 
@@ -45,6 +53,15 @@ export default function HomePage() {
     [deals]
   );
   const metrics = getMetrics(report);
+
+  // Friendly name for the AI provider tile. Null engine = not loaded yet ("…"),
+  // never the misleading "Local" default while a request is still in flight.
+  const engineLabel = useMemo(() => {
+    if (!engine?.provider) return "…";
+    const names = { groq: "Groq", anthropic: "Anthropic", local: "Local" };
+    const p = engine.provider;
+    return names[p] || p.charAt(0).toUpperCase() + p.slice(1);
+  }, [engine]);
 
   const onLoadDemo = () => {
     loadDemoWorkspace();
@@ -77,7 +94,7 @@ export default function HomePage() {
         </div>
         <div className="metric-card">
           <span>Decision Engine</span>
-          <strong>{engine?.provider || "Local"}</strong>
+          <strong>{engineLabel}</strong>
         </div>
       </section>
 
