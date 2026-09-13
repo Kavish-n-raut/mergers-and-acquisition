@@ -10,7 +10,10 @@ name: Keep backend warm
 
 on:
   schedule:
-    - cron: "*/14 * * * *"
+    # Every 10 min at offset minutes (avoiding :00, GitHub's peak-load window
+    # when scheduled runs are most delayed). Tighter than Render's 15-min idle
+    # timeout so a delayed run still lands before the instance sleeps.
+    - cron: "3,13,23,33,43,53 * * * *"
   workflow_dispatch:
 
 concurrency:
