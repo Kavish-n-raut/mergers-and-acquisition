@@ -27,7 +27,16 @@ export default function LeafletMarketMap({ locations = [], onViewportChange }) {
   const defaultCenter = [39.2, -96.5];
   const defaultZoom = 3;
 
-  const markers = useMemo(() => locations || [], [locations]);
+  // Accept either {lat,lng} or {latitude,longitude}, and drop any marker with
+  // invalid coordinates — passing NaN/undefined to Leaflet throws and blanks
+  // the whole page ("Invalid LatLng object").
+  const markers = useMemo(
+    () =>
+      (locations || [])
+        .map((m) => ({ ...m, _lat: Number(m.lat ?? m.latitude), _lng: Number(m.lng ?? m.longitude) }))
+        .filter((m) => Number.isFinite(m._lat) && Number.isFinite(m._lng)),
+    [locations],
+  );
 
   return (
     <MapContainer center={defaultCenter} zoom={defaultZoom} style={{ width: "100%", height: "520px" }}>
@@ -36,7 +45,7 @@ export default function LeafletMarketMap({ locations = [], onViewportChange }) {
       {markers.map((m) => (
         <CircleMarker
           key={m.id}
-          center={[m.latitude, m.longitude]}
+          center={[m._lat, m._lng]}
           radius={7}
           pathOptions={{ color: "#31c6a0", fillOpacity: 0.9 }}
         >
