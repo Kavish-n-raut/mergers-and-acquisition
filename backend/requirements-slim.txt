@@ -1,0 +1,21 @@
+# Slim runtime deps for free-tier cloud deploy (Render 512MB).
+# Excludes the ~2-3GB ML stack (torch/transformers/sentence-transformers/faiss/langchain):
+# FinBERT sentiment + semantic FAISS retrieval auto-fall back to keyword mode, and
+# Groq LLM still works (plain HTTP). scikit-learn + joblib are added explicitly here
+# because they were previously pulled in transitively via sentence-transformers.
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+pydantic==2.11.4
+pydantic-settings==2.9.1
+pandas==2.2.3
+numpy==2.2.5
+scikit-learn==1.9.0
+joblib==1.5.3
+sqlalchemy==2.0.40
+psycopg[binary]==3.2.7
+python-multipart==0.0.20
+python-dotenv==1.1.0
+pypdf==5.4.0
+anthropic==0.57.1
+requests==2.32.5
+python-pptx==1.0.2
