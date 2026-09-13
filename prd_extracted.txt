@@ -1,0 +1,2019 @@
+
+
+===== PAGE 1 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+  
+QUANTUMBLACK 
+M&A Deal Operating System 
+Product Requirements Document — Version 3.0 
+  
+Document Version 3.0 — Combined Architecture (v2.0 Lifecycle + v3.0 Proprietary AI 
+Intelligence Layers) 
+Lead Architect & CEO Kavish Narendra Raut 
+Institution / Lab RV Institute of Technology and Management (RVITM) 
+Date May 2026 
+Classification STRICTLY CONFIDENTIAL — Internal Engineering Use Only 
+Document Status ACTIVE — Sprint 3 Commencing 
+Predecessor v2.0 PRD — 8-Step Lifecycle Architecture (April 2026) 
+Scope Full 8-Phase M&A Lifecycle + 6 Proprietary AI Engines + Full Tech 
+Stack + Security + Roadmap
+
+===== PAGE 2 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+1.  Product Vision & Executive Summary 
+The QuantumBlack M&A Deal Operating System (the "Deal OS") is a comprehensive, AI-native 
+enterprise platform engineered to govern the entire Mergers and Acquisitions lifecycle — from the first 
+algorithmic target screening signal through final post-merger synergy realization. Where traditional M&A 
+software fragments the deal process across Excel models, email threads, a separate virtual data room, 
+manual legal review, and disconnected project management tools, the Deal OS provides a single, 
+stateful, end-to-end intelligence ecosystem. 
+  
+Version 3.0 represents a fundamental architectural and commercial repositioning of the platform: 
+  
+v2.0 A deal workflow automation system — it replaced manual processes that bankers already 
+performed: DCF modelling, NDA drafting, document scanning, pitchbook generation. 
+  
+v3.0 
+A predictive deal intelligence engine — it surfaces decisions and probabilities that no deal 
+team could previously access at any price: deal-break probability before LOI, competing-bid 
+probability before exclusivity, hidden target distress before NDA, regulatory cost before 
+filing, and integration friction before close. 
+  
+Six proprietary AI engines — the Deal Genome™, Sentiment Radar™, Competitive Bid Oracle, 
+Temporal Risk Mapper™, Regulatory Horizon Engine™, Live Negotiation War Room™, and PMI DNA 
+Score™ — are layered across all eight deal phases. These engines are not feature additions; they are 
+a structural moat. Every deal processed by the platform feeds outcome data back into the Deal 
+Genome™ comparables database, compounding predictive accuracy with each transaction without 
+sharing any confidential data between clients. 
+  
+Primary target users: Corporate Development teams at strategic acquirers; M&A advisory desks at 
+bulge-bracket and boutique investment banks; Private Equity deal teams executing platform and add-
+on acquisitions. The platform scales from a $10 million bolt-on acquisition to a multi-billion-dollar cross-
+border transaction with full multi-jurisdictional regulatory complexity.
+
+===== PAGE 3 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+2.  Problem Statement & Market Gap 
+2.1  The Fragmentation Problem 
+A standard M&A process touches no fewer than seven disconnected tools: Bloomberg or CapIQ for 
+market data, Excel for financial modelling, Outlook for NDA and LOI communication, a third-party VDR 
+(Intralinks, Datasite, Firmex) for document storage, a law-firm collaboration portal for diligence findings, 
+PowerPoint for board presentations, and a project management platform (Asana, MS Project) for PMI 
+tracking. Data is manually re-keyed between each tool, creating version-control failures, audit-trail 
+gaps, and material information loss at every handoff. 
+  
+2.2  The Intelligence Gap 
+Beyond fragmentation, the deeper structural problem is that deal teams operate reactively. They 
+analyse the data placed in front of them; they cannot systematically answer the predictive questions 
+that determine deal outcomes: 
+• How probable is it that this deal breaks before close, and what is the most likely cause? 
+• Is a competing bid about to emerge, and what price will it set? 
+• Which risks in the data room will actually crystallise, and when? 
+• Which regulatory body will challenge this deal, and what will remediation cost? 
+• Will the target's organisation actually integrate with ours, and where will friction be worst? 
+  
+These questions currently require expensive third-party advisors, subjective judgment calls, and 
+pattern-matching performed manually from human memory. No existing software platform answers any 
+of them systematically. 
+  
+2.3  The v3.0 Solution 
+The Deal OS eliminates fragmentation through a single stateful platform that persists all deal data 
+across all eight modules — no re-entry, no version drift, full audit trail. It eliminates the intelligence gap 
+through six proprietary AI engines that continuously ingest live market data, historical M&A outcome 
+databases, regulatory filing records, and behavioural signals from target companies — and surface 
+specific, quantified, explainable predictions at each phase of the deal lifecycle.
+
+===== PAGE 4 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+3.  System Architecture Overview 
+3.1  Core Design Principles 
+• Stateful Deal Thread: All eight modules share a single persistent deal object in PostgreSQL. 
+Data entered in Module 1 automatically propagates into downstream modules — no analyst re-
+entry, no version mismatch. 
+• Ephemeral AI Processing: All inference on confidential documents runs on session-scoped, in-
+memory FAISS vector stores. No VDR document text persists to any external AI infrastructure 
+after session termination. 
+• Live Market Anchoring: Valuations, capital structure recommendations, and regulatory risk 
+scores are continuously recalibrated against live Bloomberg Terminal, leveraged loan market, 
+and regulatory filing-rate feeds. 
+• Explainability-First Output: Every AI recommendation carries a Board-Ready Explainability Card 
+— a plain-English explanation of the reasoning, the evidence, and the historical precedent that a 
+Managing Director can present to a board without modification. 
+• API-Layer RBAC Enforcement: All role-gating (walk-away price, negotiation limits, Deal 
+Genome scores) is enforced at the FastAPI middleware layer, not the UI layer, making it 
+impossible to bypass through client-side manipulation. 
+• Proprietary Data Flywheel: Anonymised deal outcome data (synergy realisation rates, deal 
+timelines, PMI friction scores) is written back to the Deal Genome database at 12, 24, and 36 
+months post-close, compounding model accuracy with every completed transaction. 
+  
+3.2  Module Dependency & Data Flow Map 
+  
+Module Consumes Input From Produces Output For 
+M1 — The 
+Hunt 
+Bloomberg/CapIQ live feed, Deal 
+Genome comparables, Sentiment Radar 
+Target profile, Sentiment Radar report, 
+Competing Bid score → M2 
+M2 — The 
+Approach 
+M1 target profile, Advisor Conflict Graph, 
+NDA templates 
+Normalised financials, signed NDA, 
+outreach log → M3 
+M3 — The 
+Handshake 
+M2 financials, live capital markets feed, 
+Synergy DNA Engine 
+Enterprise value, synergy forecast, LOI 
+document → M4, M5, M6 
+M4 — The 
+Deep Dive 
+M3 EV, VDR documents, Temporal Risk 
+Mapper 
+Risk severity matrix, diligence findings, 
+Explainability Cards → M5, M7 
+M5 — The 
+War Room 
+M3 valuation, M4 risks, live negotiation 
+inputs, Bid Strategy Simulator 
+Agreed term sheet, final deal structure → 
+M6, M7 
+M6 — The 
+Check 
+M3/M5 deal value, live debt market data, 
+LBO model 
+Capital stack, IRR matrix, financing 
+confirmation → M7 
+M7 — The 
+Close 
+All prior modules M1–M6, Regulatory 
+Horizon Engine 
+Regulatory clearance status, board 
+pitchbook → M8 
+M8 — The 
+Reality 
+M3 synergy forecast, M7 close data, PMI 
+DNA Score 
+Realised synergy delta, PMI completion → 
+Deal Genome feedback loop 
+  
+3.3  Full Technology Stack
+
+===== PAGE 5 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+  
+Layer Technology Role in System 
+Frontend UI React.js (Vite), Tailwind CSS 
+(Dark Mode Luxury theme), 
+Recharts + D3.js, Framer Motion 
+All deal dashboards, module UIs, Negotiation 
+War Room canvas, PMI Kanban board 
+Backend API Python 3.12, FastAPI, Pydantic v2 
+(strict JSON validation) 
+All business logic, AI orchestration, RBAC 
+middleware, WebSocket server (War Room) 
+Task Queue Celery + Redis Async processing: PDF ingestion, Bloomberg 
+data refresh, pitchbook generation 
+AI 
+Orchestration 
+LangChain (chains, agents, 
+retrievers) 
+RAG pipeline, multi-step diligence scanning, LOI 
+and NDA generation chains 
+LLM 
+Reasoning 
+Claude claude-sonnet-4-
+20250514 (primary reasoning and 
+explainability cards) 
+Complex analysis, Explainability Card 
+generation, Negotiation Coach 
+LLM 
+Structured 
+GPT-4-turbo with strict Pydantic 
+JSON-mode output 
+Structured data extraction from documents, 
+clause classification 
+Embeddings Financial-domain fine-tuned 
+embedding model (FinBERT 
+variant) 
+Document chunk vectorisation for FAISS RAG 
+pipeline 
+Vector Store FAISS (session-scoped, 
+ephemeral, in-memory) 
+VDR document retrieval; destroyed at session 
+termination, never persisted 
+Sentiment 
+NLP 
+FinBERT (HuggingFace) Earnings call sentiment scoring for Sentiment 
+Radar module 
+Market Data Bloomberg Terminal API, S&P 
+Capital IQ 
+Live company financials, trading multiples, 
+leveraged loan market data 
+Regulatory 
+Data 
+EDGAR (SEC), Companies House 
+(UK), MCA (India), EC CORDIS 
+Filing data, public regulatory records, antitrust 
+decision history 
+Alternative 
+Data 
+Glassdoor API, LinkedIn API, 
+USPTO/EPO Patent APIs, 
+NewsAPI 
+Sentiment Radar: distress and momentum 
+signals on target companies 
+Primary 
+Database 
+PostgreSQL 16 (AWS RDS, Multi-
+AZ) 
+All persistent deal state: financials, valuations, 
+risk findings, PMI tracking 
+Document 
+Storage 
+AWS S3 (deal-scoped prefixes, 
+AES-256 server-side encryption) 
+VDR document storage, generated pitchbooks, 
+NDAs, LOIs 
+Key 
+Management 
+AWS KMS Encryption key management for all S3 objects 
+and RDS at rest 
+OCR AWS Textract Scanned PDF text extraction for VDR ingestion 
+pipeline 
+Pitchbook 
+Gen 
+python-pptx Auto-Pitchbook and 100-Day Report generation 
+as downloadable .pptx 
+NDA / LOI 
+Gen 
+python-docx + LLM template 
+chains 
+Legal document generation as downloadable 
+.docx
+
+===== PAGE 6 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+Infrastructure AWS ECS Fargate 
+(containerised), AWS ALB, 
+CloudWatch, AWS WAF 
+Scalable deployment, load balancing, 
+monitoring, web application firewall
+
+===== PAGE 7 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+4.  Feature Modules — Complete Specification 
+Each module is a self-contained UI and API surface that reads from and writes to the shared 
+PostgreSQL deal record. All eight modules are described below with full feature specifications, data 
+inputs, data outputs, and RBAC rules.
+
+===== PAGE 8 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+M1 
+THE HUNT 
+Algorithmic Target Screener Intelligence Layer 
+  
+4.1.1  Objective 
+Automate construction of the Long List (100+ candidates) and Short List (10–15 candidates) from 
+structured financial databases and unstructured open-source signals. Eliminate the 40–80 hours of 
+manual analyst market-mapping work and augment it with AI-generated predictive signals unavailable 
+to any manual research process. 
+  
+4.1.2  Feature Specification 
+Feature / Component Full Specification 
+Market Filter UI Multi-parameter filter interface with the following fields: Geography 
+(country, region, city — multi-select); Revenue range ($M, min and max); 
+EBITDA margin % (min); EV/EBITDA multiple range; Revenue CAGR 3-
+year (%); Employee count range; Ownership structure (private, PE-
+backed, public, family-owned — multi-select); Sector (4-digit NAICS or 
+GICS subsector — searchable dropdown). All filter parameters stored in 
+deals.screening_criteria with full timestamp for audit trail. Saved filter sets 
+reusable across deals. 
+Bloomberg / CapIQ 
+API Ingestion 
+Real-time pull of company profiles, revenue, EBITDA, enterprise value, 
+EV/EBITDA, net debt, and ownership structure from Bloomberg Terminal 
+API and S&P Capital IQ. EDGAR integration ingests 10-K, 10-Q, and 8-K 
+filings for public company targets. Data refresh runs every 24 hours 
+automatically for all active Long Lists. API credential rotation and rate-
+limit handling managed server-side with exponential back-off. All ingested 
+data stored in deals.target_raw_data with source attribution and ingest 
+timestamp. 
+Proprietary 
+Composite Scoring 
+Engine 
+Ranks all Long List candidates on a 0–100 composite score with the 
+following components and default weights (configurable per deal): (a) 
+Financial Fit Score — proximity to all filter criteria, 30 pts; (b) Growth 
+Trajectory Score — 3-year revenue CAGR vs. GICS subsector median, 
+25 pts; (c) Sector Tailwind Score — IMF/World Bank sector-level growth 
+rate vs. economy-wide baseline, 15 pts; (d) Deal Genome Match Score 
+— cosine similarity to profile of historical successful acquisitions in the 
+comparables database for the same sector and size tier, 20 pts; (e) 
+Competing Bid Risk Adjustment — Competitive Bid Oracle score used as 
+a tiebreaker, 10 pts. Score breakdown shown on each target card for 
+analyst review. 
+Sentiment Radar 
+(Automated) 
+Runs automatically on all Short List candidates within 60 minutes of list 
+generation. Outputs: Distress Signal Score (0–10; 10 = severe distress 
+indicators) and Momentum Signal Score (0–10; 10 = strong positive 
+operational momentum). Both scores rendered on the target card with 
+one-click drill-down to the underlying signal evidence. Full Sentiment 
+Radar specification in Section 5.2. 
+Competitive Bid 
+Oracle (Automated) 
+Estimates the probability (%) that a given Short List target will receive a 
+competing acquisition bid within the next 90 days. Rendered as a risk 
+badge on the target card. Full Competitive Bid Oracle specification in 
+Section 5.3.
+
+===== PAGE 9 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+Target Card UI Each Short List candidate is rendered as a structured card showing: 
+company name, HQ location and geography flag, financial summary 
+(LTM Revenue, LTM EBITDA, EV/EBITDA), composite score with 
+breakdown bar chart, Sentiment Radar distress/momentum scores, 
+Competing Bid Risk badge, data source attribution, and one-click 
+advance to Module 2 (Approach). Cards support free-text tagging, analyst 
+notes, and threaded team comments. Card state persists in 
+deals.target_shortlist. 
+Long List / Short 
+List Export 
+Long List exportable as .xlsx with all filter parameters, composite scores, 
+score component breakdowns, and data source attribution. Short List 
+exportable as .xlsx plus a one-page PDF executive summary per target 
+(company description, key financials, score rationale, Sentiment Radar 
+headline). Both export formats include a cover sheet with deal name, 
+analyst name, export date, and filter criteria applied. 
+  
+4.1.3  Data Inputs 
+• Bloomberg Terminal API: live company financials, market data, and ownership structure 
+• S&P Capital IQ: private company revenue estimates, deal comparables, sector EV multiples 
+• EDGAR (SEC): 10-K/10-Q/8-K filings for all US-listed public company targets 
+• Glassdoor API: employee review sentiment and rating trend (Sentiment Radar input) 
+• LinkedIn API: hiring velocity by department and seniority level (Sentiment Radar input) 
+• USPTO and EPO Patent APIs: patent filing velocity by assignee (Sentiment Radar input) 
+• NewsAPI + PR Newswire: media mentions, management departure news (Sentiment Radar 
+input) 
+• Deal Genome Database: PostgreSQL comparables table (50,000+ historical M&A transaction 
+records) 
+  
+4.1.4  Data Outputs 
+• Long List record: deals.target_longlist table — all filter parameters and raw scores 
+• Short List record: deals.target_shortlist — composite score with component breakdown 
+• Sentiment Radar report: JSON object in deals.sentiment_reports (12 signal fields) 
+• Competing Bid Oracle score: stored in deals.competitive_intelligence 
+• Screening audit log: deals.audit_log — timestamped record of all filter parameters and data 
+sources queried 
+  
+4.1.5  RBAC Rules 
+• All roles: can view Long List cards, apply filters, add notes 
+• Associate / Analyst: can generate and export Long List; cannot advance target to Short List 
+without VP+ approval 
+• VP and above: can promote targets to Short List; can view Competing Bid Oracle score 
+• Managing Director: can view Deal Genome Match Score and full composite score breakdown
+
+===== PAGE 10 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+M2 
+THE APPROACH 
+Financial Baseline & Outreach Validation Layer 
+  
+4.2.1  Objective 
+Validate the target's teaser financials, establish the legal framework for information exchange, and map 
+the advisor and relationship network around the deal. Module 2 converts a Short List target into a 
+structured financial baseline that all downstream valuation and diligence modules reference. 
+  
+4.2.2  Feature Specification 
+Feature / Component Full Specification 
+CSV / Excel 
+Ingestion Engine 
+Accepts financial upload in any common format: single-tab P&L, multi-tab 
+CIM model, management accounts spreadsheet, or audited financial 
+statement export. Auto-detects and normalises all line items to a standard 
+M&A chart of accounts: Net Revenue, Cost of Revenue, Gross Profit, 
+Gross Margin %, SG&A, R&D, EBITDA, EBITDA Margin %, Depreciation 
+& Amortisation, EBIT, Interest Expense (net), EBT, Tax, Net Income, 
+Capital Expenditure, Free Cash Flow (levered and unlevered). Anomaly 
+detection flags: EBITDA margins exceeding the 95th percentile for the 
+target's GICS sector; revenue growth rates above 3 standard deviations 
+from sector median; negative working capital trends. All anomalies 
+require analyst sign-off before advancing. Normalised data stored in 
+deals.financial_baselines. 
+Three-Year 
+Normalisation 
+Automatically constructs LTM (Last Twelve Months), prior year (PY-1), 
+and two-year prior (PY-2) financials from the uploaded data. Applies 
+standard M&A normalisation adjustments with line-item transparency: 
+above-market owner compensation addback; non-recurring items 
+(restructuring, legal settlements, one-time bonuses); pro forma 
+adjustments for any acquisitions completed within the period; run-rate 
+adjustments for organic revenue changes in the final quarter. Each 
+adjustment is line-itemised, labelled, and explainable in the deal record. 
+Normalised and as-reported figures displayed side by side. 
+NDA Auto-Drafter LLM-powered NDA generation using jurisdiction-specific clause libraries 
+covering: United States (New York and Delaware law), United Kingdom 
+(English law), European Union (German and French law), India (Indian 
+Contract Act), Singapore (Singapore law), and Hong Kong (HK law). Input 
+fields: target company name and registered address, governing law 
+jurisdiction, exclusivity period preference (default: none at NDA stage), 
+permitted disclosure parties (advisors, financing sources, board), data 
+room access scope, non-solicitation period (default: 18 months), standstill 
+period (if applicable), return or destruction of information mechanics. 
+Output: formatted .docx NDA with standard confidentiality undertakings, 
+purpose limitation, non-solicitation, standstill, and return-of-information 
+clauses. Draft is flagged for Managing Director review and edit before 
+transmission. Full version history stored in deals.nda_versions. 
+Advisor Conflict 
+Graph 
+Network graph visualisation of advisor-management-board relationships 
+across the deal ecosystem. Data inputs: target management team 
+names, board member names, known M&A advisors, and known 
+financing banks (entered by analyst or parsed from public sources). The
+
+===== PAGE 11 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+system queries a proprietary relationship database built from public M&A 
+announcements, regulatory filings, and deal tombstones. Outputs: (a) 
+Conflict flags — e.g., "Target CFO was formerly at Goldman Sachs M&A; 
+your deal counsel at Kirkland also advised Goldman on three prior deals 
+— potential channel conflict"; (b) Relationship leverage opportunities — 
+e.g., "Your VP of Corp Dev and the target CEO co-invested in a Series B 
+in 2021 via a shared LP — direct relationship exists." Graph rendered as 
+an interactive node diagram in the UI with filterable categories. 
+Exportable as PDF. 
+Deal Momentum 
+Baseline 
+Records and timestamps every formal deal milestone at outreach 
+initiation: initial contact date, NDA sent date, NDA countersigned date, 
+CIM received date, management meeting scheduled date, management 
+meeting completed date, IOI submitted date. These timestamps establish 
+the Deal Momentum Score baseline velocity that the system tracks 
+through Module 5. Momentum alerts trigger if a milestone is more than 
+50% overdue relative to the median timeline from the Deal Genome 
+comparables database for a deal of this sector and size. 
+Outreach Activity 
+Log 
+Tracks all outreach touchpoints with the following fields: date, time, 
+channel (direct email / phone / intermediary / at industry event), contact 
+name and title, contact sentiment (responsive / neutral / cold / hostile — 
+analyst-entered), response summary (free text), next action and due date. 
+Stored in deals.outreach_log. Configurable alert triggers if no response is 
+logged within a set number of business days (default: 7). Full log 
+exportable for compliance review. 
+  
+4.2.3  Data Outputs 
+• Normalised financial baseline: deals.financial_baselines — LTM, PY-1, PY-2 with normalisation 
+adjustments 
+• NDA document: AWS S3 (deal prefix) + deals.nda_versions version history 
+• Advisor Conflict Graph: deals.advisor_relationships — node and edge data, conflict flags 
+• Outreach log: deals.outreach_log — all touchpoints with timestamps 
+• Deal Momentum baseline: deals.milestone_timeline — milestone names, planned dates, actual 
+dates
+
+===== PAGE 12 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+M3 
+THE HANDSHAKE 
+Valuation & Auto-LOI Pricing Engine 
+  
+4.3.1  Objective 
+Calculate the maximum defensible purchase price using three complementary valuation methodologies, 
+quantify synergy opportunities calibrated to 50,000+ historical comparable deals, and programmatically 
+generate a legally structured Letter of Intent. Module 3 is the first point at which the deal's economic 
+terms are formally expressed and constitutes the primary input for Modules 5 (negotiation) and 6 
+(financing). 
+  
+4.3.2  Feature Specification 
+Feature / Component Full Specification 
+Discounted Cash 
+Flow (DCF) 
+Calculator 
+Full 10-year DCF model with the following inputs: Years 1–5 explicit 
+revenue growth rate (%), Years 6–10 revenue growth rate (fade function 
+to terminal growth); EBITDA margin progression by year; D&A as % of 
+revenue by year; CapEx as % of revenue by year; change in net working 
+capital as % of revenue change; effective tax rate (%); WACC — 
+computed from: risk-free rate (auto-populated from Bloomberg 10-year 
+Treasury yield, refreshed daily), equity risk premium (Damodaran country 
+risk premium database), target beta (Bloomberg 5-year monthly, re-
+levered to target capital structure), pre-tax cost of debt, target debt/equity 
+ratio, marginal tax rate; terminal growth rate (%). Outputs: Base Case EV, 
+Bull Case EV (+15% revenue growth assumption), Bear Case EV (−15% 
+revenue growth assumption). All three cases presented in a waterfall 
+chart. WACC is live-anchored — if the risk-free rate moves more than 
+25bps between sessions, the system re-runs and alerts the deal team. All 
+model inputs and outputs stored with full version history in 
+deals.valuation_models. 
+Comparable 
+Companies Analysis 
+(Trading Comps) 
+Analyst defines a peer group of 8–15 publicly listed comparable 
+companies. System auto-populates from Bloomberg/CapIQ: LTM 
+EV/Revenue, NTM EV/Revenue, LTM EV/EBITDA, NTM EV/EBITDA, 
+LTM P/E, NTM P/E, revenue growth (LTM), EBITDA margin (LTM), net 
+debt/EBITDA. Outputs: median, 25th percentile, and 75th percentile 
+multiples; implied EV range for the target at each multiple; sector-specific 
+M&A control premium (pulled from Deal Genome database — median 
+historical acquisition premium paid over public market value for the same 
+GICS subsector over the prior 5 years). Rendered as a formatted 
+comparables table and implied-EV bridge. 
+Precedent 
+Transactions 
+Analysis 
+The Deal Genome database is queried for the 20 most similar historical 
+M&A transactions by weighted similarity score (sector 30%, deal size 
+25%, EBITDA margin profile 20%, geography 15%, ownership structure 
+10%). For each matched precedent, displays: announcement date, 
+acquirer name (anonymised if private), EV, EV/Revenue multiple paid, 
+EV/EBITDA multiple paid, deal structure, premium to prior-month trading 
+price (for public targets), and whether synergy accretion was disclosed. 
+Outputs: median and percentile distribution of acquisition multiples; 
+implied EV range for the target at precedent multiples. Rendered as a 
+formatted precedents table and implied-EV bridge to complement the 
+trading comps.
+
+===== PAGE 13 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+Synergy DNA 
+Engine 
+Quantifies predicted cost and revenue synergies across six categories: 
+(1) Duplicate Headcount Savings — SG&A and G&A overlap analysis 
+(inputs: both companies' headcount by function, comp benchmarks); (2) 
+Facility Consolidation — real estate and facility costs (inputs: both 
+companies' facility count and annual costs); (3) Procurement Leverage — 
+combined purchasing power discount (inputs: combined COGS, industry 
+procurement discount curves); (4) IT System Rationalisation — annual 
+licence and maintenance savings (inputs: known IT stack overlap from 
+public data); (5) Cross-Sell Revenue — incremental revenue from selling 
+target's products into acquirer's customer base (inputs: acquirer customer 
+count, target product penetration rate assumption, ASP); (6) Pricing 
+Power Uplift — margin expansion from reduced competitive overlap 
+(sector-specific, model-driven). Each synergy category is calibrated 
+against the Deal Genome database: "In the 20 most similar historical 
+acquisitions, acquirers realised a median of 68% of predicted cost 
+synergies within 24 months and 41% of predicted revenue synergies 
+within 36 months." Outputs a risk-adjusted synergy range (Base / Bull / 
+Bear) with annual phasing and NPV at the deal's WACC. All outputs 
+stored in deals.synergy_forecasts. 
+Dynamic Capital 
+Markets Intelligence 
+Continuously recalibrates the deal's implied debt capacity and valuation 
+anchor based on live feeds: leveraged loan clearing spreads 
+(LCD/Bloomberg, updated daily), direct lending fund appetite by deal-size 
+tier ($0–50M, $50–200M, $200M+), current SOFR overnight rate, and 
+sector-specific leverage tolerance (maximum debt/EBITDA) from the 30 
+most recent comparable leveraged financings in the Deal Genome 
+database. If loan market conditions deteriorate materially (spread 
+widening exceeding 75bps or deal-size tier leverage tolerance 
+compressing by more than 0.5x EBITDA) between LOI and close, the 
+system triggers a Financing Risk Alert and the valuation model is re-run 
+automatically. Capital markets intelligence output feeds directly into 
+Module 6 as the starting point for the LBO model. 
+Football Field 
+Summary Chart 
+Consolidated valuation summary chart displaying the implied EV range 
+from each methodology (DCF Base/Bull/Bear, Trading Comps 25th–75th 
+percentile, Precedent Transactions 25th–75th percentile, 52-week trading 
+range for public targets) on a single horizontal bar chart — the standard 
+"football field" format used in investment banking board presentations. 
+The agreed LOI price is overlaid as a vertical line. Chart auto-populates 
+into the Module 7 pitchbook. 
+Auto-LOI Generator Generates a formal Letter of Intent document based on: agreed 
+Enterprise Value (or EV range), equity value calculation (EV minus 
+assumed net debt, plus cash), purchase price adjustment mechanism 
+(working capital peg, net debt true-up, specified reference balance sheet), 
+deal structure (cash, stock, or earn-out), exclusivity period (configurable, 
+default 45 calendar days), no-shop provision (standard — target may not 
+solicit competing offers during exclusivity), conditions to signing 
+(confirmatory due diligence, financing, board approval), proposed signing 
+timeline, break fee (buyer and seller, configurable), governing law. 
+Output: formatted .docx LOI with all deal terms, party details, and 
+signature blocks auto-populated from the deal record. Stored in 
+deals.loi_versions with full version history. MD-level review required 
+before transmission.
+
+===== PAGE 14 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+4.3.3  RBAC Rules 
+• All roles: can view DCF model inputs and base-case output; can view trading comps and 
+precedents tables 
+• VP and above: can edit DCF model assumptions; can run Bull/Bear scenarios; can view 
+Synergy DNA Engine output 
+• Managing Director: exclusive access to LOI Generator; exclusive access to approved EV range 
+before transmission; exclusive access to walk-away price (set in Module 5)
+
+===== PAGE 15 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+M4 
+THE DEEP DIVE 
+AI Virtual Data Room & Diligence Engine Diligence Layer 
+  
+4.4.1  Objective 
+Automate legal, financial, and operational due diligence across the entire data room document corpus. 
+Replace weeks of manual document review with an AI-powered diligence scanner that identifies, 
+categorises, risk-scores, and — critically — time-stamps when each material clause, liability, and 
+covenant will crystallise relative to the deal timeline. 
+  
+4.4.2  Feature Specification 
+Feature / Component Full Specification 
+Mass Document 
+Ingestion 
+Supports upload of up to 10,000 documents per deal. Accepted formats: 
+PDF (text-native), PDF (scanned — OCR via AWS Textract), DOCX, 
+XLSX, PPTX. Maximum 500MB per file, 50GB per deal. All documents 
+stored in AWS S3 under a deal-specific, KMS-encrypted S3 prefix with 
+object-level access logging. Documents are embedded into a session-
+scoped FAISS vector store in memory. No document text is written to any 
+external database — the vector store is destroyed when the session 
+terminates. Ingest pipeline is asynchronous (Celery + Redis); UI shows 
+real-time progress bar with document count, pages processed, and 
+estimated completion time. 
+Automated 
+Document 
+Classification 
+Classifies each ingested document into one of 26 categories using a fine-
+tuned classification model: employment contracts; executive 
+compensation agreements; IP ownership and assignment agreements; 
+patent licences; software licences (inbound and outbound); customer 
+contracts (top 10 by revenue); supplier and vendor agreements; real 
+estate leases; senior secured credit agreements; revolving credit 
+facilities; term loan agreements; high-yield bond indentures; seller notes; 
+equity documents (cap table, option plans, shareholder agreements, 
+drag-along rights); regulatory correspondence and licences; litigation 
+filings and demand letters; environmental permits and assessments; 
+insurance policies (D&O, E&O, general liability); audited financial 
+statements; tax returns and transfer pricing documentation; board 
+minutes and resolutions; material adverse change definitions; change of 
+control provisions; data processing agreements and privacy compliance; 
+government and public-sector contracts; pension and benefit plan 
+documents. Document category counts and any unclassified documents 
+are displayed on the Module 4 dashboard. 
+RAG Diligence 
+Scanner 
+Chunks all ingested documents into 512-token segments with 64-token 
+overlap. Embeds chunks using FinBERT-variant financial-domain 
+embedding model into FAISS. Runs 52 targeted retrieval queries across 
+the following risk categories: poison pills and shareholder rights plans; 
+change of control triggers (automatic vs. consent-required); golden 
+parachutes and single/double-trigger severance; key-man clauses and 
+key-employee retention requirements; non-compete and non-solicitation 
+agreements (management and employees); IP ownership ambiguities or 
+joint-ownership provisions; pending and threatened litigation and 
+regulatory proceedings; off-balance-sheet liabilities and contingent 
+obligations; undisclosed debt covenants and cross-default provisions;
+
+===== PAGE 16 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+earn-out obligations and contingent purchase price adjustments; 
+environmental liabilities and remediation obligations; customer 
+concentration risks (any customer exceeding 10% of revenue); material 
+adverse change definitions and carve-outs; right of first refusal provisions; 
+anti-assignment provisions in material contracts; data breach history and 
+regulatory enforcement actions; FCPA, UK Bribery Act, and anti-bribery 
+compliance issues; OFAC sanctions exposure; related-party transactions; 
+undisclosed encumbrances on IP or real property; government contract 
+restrictions; pension deficits and unfunded obligations; tax exposures and 
+transfer pricing disputes; employment misclassification risks; 
+cybersecurity vulnerabilities disclosed in any document; lease termination 
+rights triggered by change of ownership. For each finding: verbatim 
+extracted clause text, source document name, page number, applicable 
+party names, and financial exposure estimate (where calculable). 
+Temporal Risk 
+Mapper 
+Maps when each identified risk will crystallise relative to the deal timeline, 
+assigning each finding to one of four temporal categories: (A) Triggered 
+at LOI Signing — risks that activate upon execution of the Letter of Intent 
+(e.g., standstill obligations on the target); (B) Triggered at Closing — 
+change of control provisions, consent requirements, or automatic 
+termination clauses that fire at transaction completion; (C) Triggered 
+Post-Close — earn-out obligations, non-compete windows, regulatory 
+remediation deadlines, deferred consideration; (D) Time-Indeterminate — 
+litigation outcomes, environmental remediation costs, and regulatory 
+investigation resolutions with no defined timeline. A temporal urgency 
+multiplier is applied to each risk's severity score: severity score × (1 + 
+urgency factor), where the urgency factor is 0.5 for At-Signing, 0.3 for At-
+Close, 0.1 for Post-Close (Year 1), 0.05 for Post-Close (Year 2+), 0 for 
+Indeterminate. This multiplier means that two risks with identical severity 
+scores can generate very different adjusted scores depending on their 
+proximity to closing — fundamentally changing the negotiation 
+prioritisation. 
+Severity Matrix 
+Dashboard 
+Full-page UI dashboard displaying all diligence findings as an interactive, 
+filterable matrix. Filter dimensions: Severity (High / Medium / Low — 
+colour-coded Red / Amber / Green); Category (Legal / Financial / 
+Regulatory / IP / HR / Environmental / Tax); Temporal Trigger (At Signing 
+/ At Close / Post-Close / Indeterminate); Document Category (from the 26 
+classification categories). Each finding row is clickable to expand: 
+verbatim extracted clause, source document and page number, AI-
+generated plain-English risk description, estimated financial exposure 
+range, and recommended deal response. Severity assignments are 
+editable by VP and above, with a mandatory comment field — all edits 
+timestamped and stored in the audit log. 
+Board-Ready 
+Explainability Cards 
+For every High-severity finding, the system auto-generates a structured 
+one-page Explainability Card containing: (1) Risk Headline — one 
+sentence, plain English, no legal jargon; (2) What It Means — two to 
+three sentences explaining the mechanism of the risk for a non-lawyer 
+board member; (3) Quantified Financial Exposure — point estimate and 
+range (e.g., "$2.1M–$4.7M contingent liability based on claim quantum 
+and comparable settlement data"); (4) Recommended Deal Response — 
+one of: price chip (recommended reduction amount), escrow 
+(recommended escrow amount and release conditions), representation 
+and warranty insurance (coverage scope and estimated premium), 
+specific indemnity (recommended cap and survival period), or walk-away
+
+===== PAGE 17 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+trigger (the threshold at which this risk alone justifies declining the 
+transaction); (5) Historical Precedent — "In 73% of transactions in the 
+Deal Genome database with a similar change-of-control provision, 
+acquirers negotiated a price reduction of 1.5–3.0% of enterprise value." 
+Explainability Cards auto-populate into Section 6 of the Module 7 
+pitchbook. 
+AI Q&A Interface Conversational chat interface allowing authorised deal team members to 
+query the full vectorised document corpus in natural language. Example 
+queries supported: "What are all the net debt components referenced in 
+the financial statements?"; "Does any customer contract contain a 
+termination right triggered by this acquisition?"; "What is the aggregate 
+claimed amount in all pending litigation proceedings?"; "List all properties 
+subject to environmental remediation obligations."; "Which employment 
+contracts contain non-compete periods exceeding 12 months?" All 
+responses cite the specific document name and page number for every 
+factual claim. Query history stored in deals.qa_log with user identity for 
+audit purposes. Responses generated by Claude claude-sonnet-4-
+20250514 with FAISS retrieval context. 
+  
+4.4.3  Data Outputs 
+• Document index: deals.vdr_documents — filename, S3 key, classification category, page count, 
+ingest timestamp 
+• Diligence findings: deals.diligence_findings — risk text, category, temporal tier, severity score, 
+adjusted score, source doc, page 
+• Explainability Cards: deals.explainability_cards — structured JSON for each High-severity 
+finding 
+• Q&A log: deals.qa_log — all queries, responses, and cited sources with user and timestamp 
+• Severity Matrix export: formatted .xlsx with all findings and full metadata, for external counsel 
+review
+
+===== PAGE 18 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+M5 
+THE WAR ROOM 
+Structuring, Negotiation & Live Tactics Tactics Engine 
+  
+4.5.1  Objective 
+Optimise the transaction structure based on risk and return, compute the maximum defensible 
+purchase price, and provide the deal team with a real-time AI-powered negotiation workspace. Module 
+5 is the most operationally intensive module in the platform — it is active for the entire negotiation 
+phase and updates dynamically as diligence findings, capital market conditions, and negotiation rounds 
+alter the deal's economics. 
+  
+4.5.2  Feature Specification 
+Feature / Component Full Specification 
+Deal Structuring AI Evaluates M4 diligence risk findings (severity, exposure estimates, 
+temporal tier) against M3 valuations (DCF range, precedents range, 
+synergy NPV) to recommend the optimal transaction mechanism. 
+Evaluates five structure types: (1) All-Cash — recommended when 
+diligence is clean and acquisition financing is committed; computes cash 
+financing requirement and impact on acquirer leverage ratio; (2) Stock 
+Swap — recommended for public-to-public transactions with high synergy 
+confidence; computes exchange ratio, dilution to acquirer shareholders 
+(% and EPS impact), pro forma ownership split, and anti-dilution 
+provisions required; (3) Earn-Out — recommended when valuation 
+disagreement exceeds 15% of enterprise value; structures the earn-out 
+metric (Revenue, EBITDA, or milestone-based), measurement period, 
+annual payment schedule, aggregate cap, and buyer protection clauses 
+(non-interference, accounting policy consistency); (4) Contingent Value 
+Rights (CVR) — recommended for binary risk events such as pending 
+litigation outcomes or regulatory approvals; structures the CVR payment 
+trigger, amount, and timeline; (5) Seller Rollover Equity — recommended 
+to retain seller alignment post-close; computes implied seller ownership 
+percentage, anti-dilution provisions, tag-along and drag-along rights, and 
+put/call mechanics. For each structure, outputs: pro forma diluted EPS 
+impact, equity IRR sensitivity across 5 exit multiples, debt/equity ratio 
+post-close, and recommendation rationale. 
+Dynamic Walk-Away 
+Price 
+Computes the maximum price at which the acquisition still meets the 
+Board-approved return threshold (configurable: default 15% levered 
+equity IRR or 1.5x MOIC at base case EBITDA). The walk-away price is a 
+live, dynamic figure that updates in real time as: (a) new diligence 
+findings emerge and are priced into the exposure model; (b) capital 
+market conditions shift the cost of financing (per the Dynamic Capital 
+Markets Intelligence feed); (c) the deal team revises synergy estimates in 
+response to management meeting insights. Walk-away price is RBAC-
+restricted to Managing Director and above, enforced at the API layer. All 
+other roles see only the authorised opening bid range. Full version history 
+of every walk-away price calculation stored in deals.negotiation_limits 
+with the triggering event and user identity. 
+Live Negotiation 
+War Room 
+Real-time multi-party collaborative workspace accessible to the deal 
+team, external M&A counsel, and financial advisors simultaneously. Built 
+on WebSocket server (FastAPI + Redis pub/sub); all participants see
+
+===== PAGE 19 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+changes within 500ms. Components: (1) Live Term Sheet Editor — 
+structured form covering all key economic and legal terms; every field edit 
+is tracked as a version with editor identity and timestamp; redlines 
+between versions rendered visually with additions in green and deletions 
+in red; full redline history accessible; (2) AI Negotiation Coach — 
+analyses the opposing party's concession velocity (time between counter-
+offers, magnitude of movement per round, which terms they contest most 
+aggressively) and generates real-time counter-offer recommendations 
+with rationale; (3) Concession Heatmap — visual grid showing all 
+negotiated terms on one axis and negotiation rounds on the other; cell 
+colour indicates the magnitude of movement per round; allows the deal 
+team to identify which terms the seller is most flexible on; (4) Negotiation 
+Script Generator — for each High and Medium severity diligence finding, 
+generates a negotiation talking point: "The change-of-control provision in 
+the Apex Software licence creates a $2.3M consent-fee exposure. We 
+propose a $1.5M specific escrow to cover the 12-month consent period."; 
+(5) Access gating: walk-away price and negotiation limits visible only to 
+MD-level and above; external counsel see term sheet only, not valuation 
+model. 
+Tactics Engine & 
+Playbook 
+Generates a structured written negotiation playbook at the 
+commencement of Module 5. For each High and Medium severity 
+diligence finding, the playbook contains: risk summary (plain English); 
+quantified financial exposure estimate; recommended negotiation lever 
+(price chip, escrow, R&W insurance, specific indemnity); proposed 
+opening position; acceptable settlement range; point at which the risk 
+alone becomes a walk-away condition. The playbook is re-generated with 
+each new round of diligence findings and versioned in 
+deals.negotiation_playbooks. 
+Bid Strategy 
+Simulator 
+Monte Carlo simulation tool for modelling the expected outcome of 
+different bid strategies under uncertainty. Inputs: probability distribution of 
+competing bid (from Competitive Bid Oracle score); probability distribution 
+of seller's reservation price (estimated from precedent transactions and 
+Deal Genome data); acquirer's maximum bid (walk-away price); timeline 
+to exclusivity expiry (days); number of simulations (default: 10,000). 
+Outputs: probability of winning at each bid increment ($1M steps); 
+expected value of the bidding strategy; recommended bid given risk-
+adjusted outcome distribution; maximum bid at which the expected value 
+of the deal is still positive. Rendered as a probability distribution chart 
+with the recommended bid highlighted. 
+Deal Momentum 
+Score (Active) 
+During Module 5, the Deal Momentum Score tracks negotiation velocity 
+using: time per negotiation round (actual vs. benchmark from Deal 
+Genome comparables); magnitude of seller concessions per round (% of 
+contested terms resolved); number of open issues vs. benchmark for this 
+stage. Momentum alerts trigger when the deal is tracking significantly 
+slower than comparable transactions — an early warning of deal fatigue 
+or process breakdown. Score updated after each documented negotiation 
+round.
+
+===== PAGE 20 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+M6 
+THE CHECK 
+Capital & Debt Financing Engine Financing Engine 
+  
+4.6.1  Objective 
+Model the complete financing of the transaction, validate that the required capital structure is 
+achievable in current market conditions, and identify the optimal debt/equity mix to maximise acquirer 
+IRR while maintaining adequate covenant headroom throughout the hold period. 
+  
+4.6.2  Feature Specification 
+Feature / Component Full Specification 
+LBO / Acquisition 
+Finance Model 
+Full leveraged acquisition finance model computing: (a) Maximum senior 
+secured debt capacity — 2.5x to 4.5x EBITDA depending on sector and 
+credit quality, calibrated to current direct lending and broadly syndicated 
+loan market appetite from the Debt Market Pulse feed; (b) Unitranche or 
+mezzanine debt capacity — additional 1.0x to 1.5x EBITDA where market 
+conditions support; (c) Required equity contribution — deal equity = EV 
+minus total debt raised minus seller rollover (if applicable); (d) Equity IRR 
+at base, bull, and bear case EBITDA; (e) Debt Service Coverage Ratio 
+(DSCR) by year — minimum covenant threshold (typically 1.20x) with 
+headroom analysis; (f) Free Cash Flow available for debt repayment by 
+year — FCF sweep mechanics modelled; (g) Leverage ratio (net debt / 
+EBITDA) by year with covenant step-down schedule; (h) Debt maturity 
+and refinancing risk flags. 5x5 sensitivity tables for equity IRR across five 
+entry multiples (EV/EBITDA) and five exit multiples, at both base and 
+bear case EBITDA. The intersection where IRR falls below the Board 
+hurdle rate (configurable, default 15%) is highlighted red, visually defining 
+the return boundary. 
+Capital Stack 
+Visualiser 
+Interactive stacked bar chart showing the full financing mix at transaction 
+close: Senior Secured Revolving Credit Facility ($ committed, $ drawn at 
+close, spread, maturity); Senior Secured Term Loan A/B ($ amount, OID, 
+spread, amortisation, maturity); Unitranche / Direct Lending ($ amount, 
+PIK vs. cash pay, maturity); Second-Lien Debt ($ amount, spread, 
+maturity — where applicable); Mezzanine Debt ($ amount, PIK option, 
+warrant coverage — where applicable); Seller Notes ($ amount, rate, 
+maturity — where applicable); Preferred Equity ($ amount, dividend rate, 
+liquidation preference); Common Equity — Sponsor ($ amount, % 
+ownership); Management Rollover Equity ($ amount, % ownership). Each 
+layer is clickable to display the assumed interest rate, amortisation 
+schedule, covenant package, and call protection. Total financing sources 
+and uses reconciliation displayed alongside. Visualiser updates in real 
+time as financing assumptions are modified. 
+Debt Market Pulse Live integration with leveraged loan market data updated daily: (a) 
+Current clearing spreads for B/BB-rated leveraged loans by deal-size tier 
+($0–50M, $50–200M, $200M–$1B); (b) Direct lending fund new 
+commitment activity and recent transaction multiples for each tier; (c) 
+CLO new issuance volume (leading indicator of broadly syndicated 
+market appetite); (d) Credit fund dry powder by strategy (senior direct 
+lending, unitranche, mezzanine); (e) Sector-specific leverage tolerance 
+from the 30 most recent comparable financings in the Deal Genome
+
+===== PAGE 21 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+database. Financing Risk Alert triggers if: loan market spread widening 
+exceeds 75bps since LOI date; leverage tolerance for the target's sector 
+compresses by more than 0.5x EBITDA; or a direct lending fund that 
+provided a financing indication withdraws from the process. On alert, the 
+LBO model is re-run automatically and the deal team is notified. 
+Transaction Cost 
+Model 
+Computes all transaction costs as a separate schedule added to the 
+acquisition uses of funds: Acquirer-side M&A advisory fee (standard 
+Lehman formula or flat fee — configurable); Target-side M&A advisory 
+fee (disclosed in the target's engagement letter where available, 
+otherwise estimated); Acquirer legal fees (deal counsel, antitrust counsel, 
+employment counsel); Target legal fees (disclosed or estimated); 
+Financing fees (commitment fee, OID, arrangement fee, legal fees for 
+lenders); Financial due diligence and Quality of Earnings fee; 
+Representation and Warranty Insurance premium (estimated at 2.5–4.0% 
+of coverage limit for M&A R&W); Regulatory filing fees (HSR: $30K–
+$280K depending on size; EC: EUR 0 (Phase I) to EUR 0 (Phase II); CCI: 
+INR 20L; CFIUS: $750 mandatory declaration or $500K full notice); Year 
+1 integration costs (from Module 8 PMI DNA Score estimate). Total 
+transaction costs are automatically added to the equity requirement in the 
+IRR calculation. 
+Break-Even 
+Analysis 
+Computes the minimum EBITDA exit multiple at which the acquisition 
+breaks even at the Board hurdle rate IRR, for each financing scenario. 
+Displayed as a break-even chart overlaid on the IRR sensitivity matrix. 
+Also computes the maximum sustainable purchase price at the current 
+financing terms and hurdle rate — providing a sanity check against the 
+Module 3 walk-away price.
+
+===== PAGE 22 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+M7 
+THE CLOSE 
+Compliance, Regulatory & Auto-Pitchbook Approval Layer 
+  
+4.7.1  Objective 
+Clear all regulatory filing requirements, manage the conditions precedent to closing checklist, obtain 
+board approval, and produce the comprehensive board-ready pitchbook that synthesises all prior 
+modules into a single, investment-bank-quality presentation. Module 7 is the final gate before the deal 
+transitions to post-merger integration. 
+  
+4.7.2  Feature Specification 
+Feature / Component Full Specification 
+Regulatory Horizon 
+Engine 
+Multi-jurisdiction antitrust and foreign investment risk modelling. Inputs: 
+deal EV ($), target revenue by geography, acquirer revenue by 
+geography, combined market share by product category and geography, 
+target GICS sector, presence of US government contracts, foreign 
+ownership of either party. Outputs for each applicable jurisdiction: (a) 
+Required filing type and threshold analysis — United States (HSR Act — 
+size of transaction test and size of parties test); European Union (EC 
+Merger Regulation — worldwide and EU turnover thresholds, Phase I and 
+Phase II risk); United Kingdom (CMA — turnover and share of supply 
+tests); India (Competition Commission of India — CCI assets and 
+turnover thresholds); China (SAMR — PRC turnover thresholds); others 
+as applicable by deal geography; (b) Probability of second request or 
+Phase II review (%), derived from a logistic regression model trained on 
+10 years of antitrust filing outcomes in the Deal Genome regulatory sub-
+database, using features: combined market share, number of product 
+overlaps, transaction size, and regulatory body; (c) Estimated review 
+timeline by jurisdiction (weeks); (d) Probability and estimated cost of 
+required divestitures — asset sales required to obtain clearance, with 
+estimated divestiture value range; (e) Critical path to close — which 
+regulatory approval is the binding timeline constraint. Full specification in 
+Section 5.5. 
+CFIUS Screening 
+Module 
+Dedicated screening module for cross-border deals involving US 
+businesses. Assesses mandatory and voluntary CFIUS filing triggers: 
+foreign acquirer nationality (mandatory declaration triggers for TID US 
+Business acquirers from listed countries); presence of critical technology 
+(export-controlled items under EAR or ITAR); critical infrastructure 
+(energy, water, financial systems, telecommunications); sensitive 
+personal data (POCI — identifiable data on US government personnel or 
+security-cleared individuals); proximity to US military or government 
+facilities (geographic screening using DOD facility database). Outputs: 
+CFIUS risk tier (Low / Voluntary Filing Recommended / Mandatory 
+Declaration / Mandatory Full Notice); supporting rationale for each risk 
+factor; estimated CFIUS review timeline (30 days for declarations, 45 
+days extendable for full notices); estimated legal cost of CFIUS process. 
+Mandatory filing triggers are surfaced as blocking conditions on the deal 
+timeline Gantt chart.
+
+===== PAGE 23 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+Conditions 
+Precedent & Closing 
+Checklist 
+Auto-generated closing checklist covering all standard conditions 
+precedent to close, populated from deal-specific data in prior modules: 
+regulatory clearances (all jurisdictions identified by Regulatory Horizon 
+Engine); Board of Directors approval — acquirer and target; shareholder 
+approval — if required by deal structure or exchange rules; Financing 
+Commitment Letter (debt); No Material Adverse Change certificate; 
+Representations and Warranties bring-down; third-party consents 
+required (change-of-control consents flagged in M4 diligence scanner: 
+key customer contracts, real estate landlords, software licence holders, 
+lenders); closing deliverables (disclosure schedules, legal opinions, 
+officer certificates, pay-off letters for existing debt). Each checklist item: 
+assignee (deal team member), due date, status (Not Started / In Progress 
+/ Complete / Blocked), dependency links to other items, and completion 
+notes. RBAC: all roles can view; VP and above can update status; MD 
+can mark conditions as waived with written rationale. 
+Auto-Pitchbook 
+Generator 
+Compiles data from all prior modules into a fully formatted, investment-
+bank-quality PowerPoint presentation (.pptx, generated via python-pptx) 
+in approximately 45 seconds. Pitchbook includes the following sections: 
+(1) Executive Summary — deal rationale, headline transaction metrics, 
+committee recommendation box; (2) Target Company Overview — 
+business description, market position, product/service summary, 
+management team, revenue breakdown by segment and geography; (3) 
+Strategic Rationale — acquirer's stated M&A strategy, how target 
+addresses strategic gaps, competitive landscape positioning; (4) 
+Financial Analysis — LTM and projected income statement summary, M3 
+normalisation adjustments; (5) Valuation — Football Field chart (DCF, 
+Trading Comps, Precedent Transactions), all methodology detail tables; 
+(6) Synergy Analysis — synergy categories, annual phasing, Deal 
+Genome calibration note, NPV of synergies; (7) Diligence Summary — 
+M4 risk matrix, top 5 High-severity Explainability Cards; (8) Transaction 
+Structure — deal structure rationale, capital stack chart, earn-out terms if 
+applicable; (9) Financing — Module 6 capital stack visualiser, LBO model 
+summary, Debt Market Pulse conditions note, IRR sensitivity matrix; (10) 
+Regulatory — filing requirements by jurisdiction, Regulatory Horizon 
+Engine probability outputs, critical path timeline; (11) Integration Plan — 
+PMI DNA Score headline, 100-Day Plan summary workstreams; (12) 
+Recommendation — final enterprise value, equity value, purchase price, 
+financing structure, conditions, proposed signing timeline, board 
+resolution language. All charts and tables are data-linked to the live deal 
+record at generation time. Pitchbook stored in AWS S3 with version 
+number and generation timestamp. 
+Regulatory Timeline 
+Gantt 
+Visual Gantt chart displaying the expected regulatory review process for 
+each applicable jurisdiction in parallel: filing preparation period, filing 
+submission date, initial review period, expected clearance date (base 
+case and extended case), and overall critical path to close. Chart updates 
+automatically when the Regulatory Horizon Engine refreshes. Exportable 
+as PDF for inclusion in board materials.
+
+===== PAGE 24 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+M8 
+THE REALITY 
+100-Day PMI Intelligence Dashboard Value Realization Layer 
+  
+4.8.1  Objective 
+Ensure the acquisition delivers the value promised to the board. Module 8 transforms post-merger 
+integration from a reactive project management exercise into a proactive intelligence system — one 
+that predicted integration friction before Day 1 (via PMI DNA Score), tracks actual synergy realization 
+against the forecast that justified the purchase price, and feeds realized outcome data back into the 
+Deal Genome to compound platform accuracy. 
+  
+4.8.2  Feature Specification 
+Feature / Component Full Specification 
+PMI DNA Score Pre-close culture and organisation compatibility analysis generated at 
+Module 7 (before close) so the Day 1 integration plan is proactive, not 
+reactive. Score components (each scored 0–100, composite weighted 
+average): (1) Culture Compatibility Score (25%) — FinBERT sentiment 
+analysis of Glassdoor reviews from both the acquirer and target over the 
+prior 18 months, comparing scores on management effectiveness, 
+communication, work-life balance, and "recommends to a friend" trend; 
+(2) Org Structure Compatibility (20%) — analysis of org chart hierarchy 
+depth, span of control, decision-making structure (centralised vs. 
+decentralised), derived from LinkedIn and published org chart data; (3) 
+Leadership Profile Match (20%) — LinkedIn profile analysis of target C-
+suite vs. acquirer leadership team on industry tenure, prior integration 
+experience, educational background, and cultural indicators; (4) 
+Compensation Structure Overlap (20%) — job title and level 
+benchmarking to quantify retention risk at each seniority band, flagging 
+roles where the acquirer's comp package is below market for the target's 
+talent; (5) Technology Stack Compatibility (15%) — IT system overlap 
+score derived from job posting analysis, product review sites, and public 
+tech stack disclosures, assessing ERP, CRM, HRIS, and core 
+infrastructure compatibility. Output: composite PMI DNA Score (0–100; 0 
+= maximum friction), friction heatmap by workstream (IT / Finance / HR / 
+Sales / Operations / Culture), and a pre-close integration risk narrative. 
+Full specification in Section 5.6. 
+Synergy Realization 
+Tracker 
+Stateful dashboard (PostgreSQL-backed) comparing Module 3 Synergy 
+DNA Engine predictions against actual realised synergies entered month-
+by-month by the integration team. Tracked by category: Headcount 
+savings (# and $ realised vs. # and $ predicted); Facility consolidations ($ 
+realised vs. $ predicted); Procurement savings ($ realised vs. $ 
+predicted); Cross-sell revenue ($ realised vs. $ predicted); IT 
+rationalisation savings ($ realised vs. $ predicted); Pricing uplift ($ 
+realised vs. $ predicted). For each category: monthly entry form (realised 
+$ for the month), cumulative to-date, run-rate annualised figure, and 
+variance vs. prediction ($ and %). Root cause AI: if realised synergies 
+trail prediction by more than 15% for two consecutive months in any 
+category, the system generates a root cause analysis prompt and the 
+integration lead is required to categorise the variance as: Delayed 
+Implementation / Overestimated Opportunity / Organisational Resistance
+
+===== PAGE 25 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+/ Market Conditions / Process Dependency / Other. Root cause entries 
+stored in deals.synergy_variance_log. 
+Deal Genome 
+Feedback Loop 
+At 12, 24, and 36 months post-close, the platform prompts the deal team 
+to enter or confirm final realised synergy figures and integration outcome 
+assessments. These outcomes are written back to the Deal Genome 
+comparables database as an anonymous record (no company names, no 
+client identification — only sector, size tier, deal structure, leverage ratio, 
+and outcome metrics). Each record improves calibration of: Synergy DNA 
+Engine (predicted vs. realised synergy ratios by category); PMI DNA 
+Score (which friction predictors most accurately predicted realisation 
+failure); Deal Genome match scoring (which deal characteristics most 
+predict post-close EBITDA outperformance or underperformance). This is 
+the proprietary data flywheel — each deal makes the platform more 
+accurate for all future users without any sharing of confidential deal 
+information between clients. 
+PMI Kanban Board Full-featured project management board for integration execution, pre-
+populated from the PMI DNA Score friction heat map with recommended 
+workstreams and priority tasks. Standard workstream lanes: IT Systems 
+(ERP migration, email domain consolidation, cybersecurity policy 
+harmonisation, SSO implementation, network integration); Finance (chart 
+of accounts consolidation, audit preparation, treasury and cash 
+management integration, AP/AR system migration, financial reporting 
+realignment); Human Resources (org structure announcement, benefit 
+plan harmonisation, payroll system integration, performance management 
+alignment, onboarding programme); Sales and Customer Success (CRM 
+migration, customer communication plan, cross-sell enablement training, 
+pricing harmonisation, customer retention risk management); Operations 
+(supply chain consolidation, facility rationalisation, vendor contract 
+renegotiation, quality management alignment); Culture and 
+Communications (all-hands communications, values workshop, employee 
+engagement survey, DEI programme alignment, leadership visibility 
+programme). Each task: assignee, due date, status (Not Started / In 
+Progress / Complete / Blocked), dependency links, and completion notes. 
+Board accessible to all RBAC-authorised integration team members. 
+Deal Momentum 
+Score (Post-Close) 
+Tracks integration execution velocity using a composite of: integration 
+task completion rate vs. planned schedule (% on time and on budget); 
+synergy realization rate vs. plan (% of target achieved to date); key 
+employee retention rate (defined as the employees flagged as key-man in 
+M4 diligence remaining 30, 60, and 90 days post-close); and customer 
+churn rate in the first 90 days post-close (pipeline data entered by Sales 
+workstream lead). Score shown as a 0–100 gauge with trend arrow. Alert 
+triggers when score drops below 60 for two consecutive reporting 
+periods, prompting a mandatory integration review meeting flag. 
+100-Day Integration 
+Report Generator 
+Auto-generates a formatted integration progress report at Day 30, Day 
+60, and Day 100 post-close. Report sections: (1) Executive Summary — 
+overall Deal Momentum Score, key achievements, key risks; (2) Synergy 
+Realization Dashboard — predicted vs. actual waterfall chart by category; 
+(3) PMI Kanban Board Completion Summary — % complete by 
+workstream, blocked items, critical path items; (4) Key Employee 
+Retention Status — by seniority band and workstream; (5) Customer 
+Retention Status — revenue at risk, churn to date; (6) IT Integration 
+Milestone Status — systems migrated, systems outstanding; (7) Forward
+
+===== PAGE 26 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+Plan — Days 101–365 priorities by workstream with owner and milestone 
+dates. Generated as .pptx via python-pptx for direct board presentation. 
+Stored in AWS S3 with date-stamp.
+
+===== PAGE 27 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+5.  Proprietary AI Intelligence Engines 
+The six engines in this section are the structural competitive moat of the Deal OS. Each engine is an 
+independent AI module with its own data sources, model architecture, inference pipeline, and output 
+schema. Each contributes intelligence to one or more deal modules and writes outcome data back to 
+the Deal Genome database at deal completion. 
+  
+E1 
+Deal 
+Genome™ 
+PURPOSE 
+Fingerprint every new deal against 50,000+ historical M&A transactions to predict deal-
+break probability, timeline slippage, and post-close EBITDA miss before any document 
+is signed. 
+  
+5.1.1  Database Architecture 
+The Deal Genome is a PostgreSQL table (deal_genome.comparables) containing structured records of 
+historical M&A transactions. Each record contains: deal announcement date; close date (or broken 
+date); buyer GICS sector (4-digit); target GICS sector (4-digit); deal enterprise value ($M); EV/EBITDA 
+entry multiple; deal structure (cash / stock / earn-out / hybrid); leverage ratio at close (net debt / 
+EBITDA); buyer geography; target geography; regulatory jurisdictions involved; diligence duration (days 
+LOI to SPA signing); time to close (days announcement to close); deal outcome (closed / broken / 
+renegotiated); post-close EBITDA at 12, 24, and 36 months vs. acquisition model (% variance); 
+predicted vs. realised synergies at 12, 24, and 36 months by category (% realised); PMI complexity 
+rating (1–5, integration team-entered at 100 days post-close). Records sourced from: public M&A 
+announcements and regulatory filings (anonymised); platform deal outcomes contributed by clients 
+under an opt-in data-contribution agreement (no company names — sector, size, structure, and 
+outcome metrics only). 
+  
+5.1.2  Similarity Scoring Algorithm 
+For each new deal, the Deal Genome computes a weighted Euclidean distance against every record in 
+the comparables database using these features and weights: 
+Feature Weight Matching Method 
+GICS sector — 4-digit 25% Exact match = 1.0; 2-digit match = 0.5; no match = 0 
+Deal size decile 20% Gaussian kernel over EV decile distance 
+EV/EBITDA entry multiple 20% Gaussian kernel over multiple distance 
+Buyer/Target geography 10% Same country = 1.0; same region = 0.5; cross-region = 0 
+Deal structure 10% Exact match = 1.0; partial match (hybrid) = 0.5 
+Leverage ratio 10% Gaussian kernel over leverage ratio distance 
+Diligence complexity (M4 
+score) 
+5% Normalised M4 finding count and severity weighted score 
+  
+5.1.3  Predictive Outputs 
+• Deal Break Probability (%): Distribution of outcomes (closed / broken / renegotiated) across the 
+20 most similar historical deals, updated at each module milestone. Displayed with confidence 
+interval.
+
+===== PAGE 28 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+• Timeline Slippage Prediction: Expected number of additional days beyond planned close date, 
+based on diligence complexity and regulatory jurisdiction combination in matched deals. 
+• Post-Close EBITDA Miss Probability (%): Probability that realised EBITDA at 24 months post-
+close is more than 15% below the acquisition model, based on matched deal outcomes. 
+• Synergy Realisation Rate Prediction: Expected percentage of predicted synergies realised at 
+12, 24, and 36 months post-close by category, calibrated to matched deal outcomes. 
+  
+E2 
+Sentiment 
+Radar™ 
+PURPOSE 
+Detect hidden target distress and positive momentum signals using NLP surveillance of 
+six public data sources before any formal approach is made. 
+  
+5.2.1  Signal Sources & NLP Pipeline 
+Feature / Component Full Specification 
+Earnings Call 
+Transcripts 
+Source: SEC EDGAR (public companies) and Refinitiv Eikon transcript 
+API. Model: FinBERT sentiment classifier fine-tuned on financial earnings 
+call language. Analysis: management tone on forward guidance, cost 
+commentary, competitive discussion, and analyst Q&A evasiveness 
+score. Signal: negative sentiment trend over 3+ consecutive quarters is a 
+Distress flag. Positive guidance upgrade trend is a Momentum flag. 
+Glassdoor 
+Employee Reviews 
+Source: Glassdoor API (aggregated ratings — no individual reviews 
+surfaced to comply with ToS). Metrics tracked: overall rating trend (12-
+month rolling), CEO approval rating trend, "Recommends to a Friend" % 
+trend, management effectiveness sub-score. Signal: overall rating decline 
+of more than 0.4 stars in 6 months is a Distress flag; sustained rating 
+above 4.0 with upward trend is a Momentum flag. 
+LinkedIn Hiring 
+Velocity 
+Source: LinkedIn API (job postings by company). Metrics: net new job 
+postings by department (Engineering, Sales, Finance, Operations, HR) 
+and seniority level (IC, Manager, Director, VP, C-suite), tracked month-
+over-month. Signals: sudden spike in Finance/Accounting job postings 
+(potential audit preparation or distress); sudden cessation of all hiring 
+(potential cost freeze or sale process); VP+ departures cluster (potential 
+management instability). Momentum signal: aggressive hiring in Sales 
+and Engineering with new market expansion titles. 
+Patent Filing 
+Velocity 
+Source: USPTO Patent Full-Text Database (PatentsView API) and EPO 
+Open Patent Services API. Metrics: number of new patent applications 
+filed by the target entity per quarter, tracked against a 3-year baseline. 
+Signal: greater than 40% decline in quarterly patent filing rate sustained 
+over two quarters is a Distress / R&D budget-cut flag. Accelerating filing 
+rate is a Technology Momentum flag. 
+News & Press 
+Release NLP 
+Sources: NewsAPI (400+ news sources) and PR Newswire. Named entity 
+recognition (spaCy NER) extracts all mentions of the target company. 
+Sentence-level sentiment classification identifies: C-suite or board 
+member departures; material customer wins or losses; regulatory 
+enforcement actions; litigation filings or settlements; credit rating 
+changes; financing announcements. Each event is classified by type, 
+sentiment (positive / negative / neutral), and materiality estimate (Major / 
+Minor based on source reach and market reaction where observable).
+
+===== PAGE 29 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+Supply Chain & 
+Credit Signals 
+Source: commercial credit data providers (Dun & Bradstreet API, 
+Creditsafe where available). Metrics: Days Payable Outstanding (DPO) 
+trend — sustained increase of more than 15 days over 6 months is a 
+liquidity stress flag; trade credit line utilisation trend; payment delinquency 
+history. Note: availability varies by geography and company size; flagged 
+as data-unavailable where not accessible. 
+  
+5.2.2  Output Schema (deals.sentiment_reports) 
+• distress_score: 0–10 composite (10 = severe distress indicators present across multiple 
+sources) 
+• momentum_score: 0–10 composite (10 = strong positive operational momentum across 
+sources) 
+• signal_breakdown: JSON array of individual signal findings with source, metric, direction, and 
+confidence 
+• top_3_distress_signals: ranked list of the three most material distress findings with evidence 
+• top_3_momentum_signals: ranked list of the three most material momentum findings with 
+evidence 
+• data_coverage_pct: percentage of the six source categories for which data was available 
+• report_generated_at: UTC timestamp 
+  
+E3 
+Competitive 
+Bid Oracle 
+PURPOSE 
+Estimate the probability and expected price range of a competing acquisition bid 
+emerging within 90 days, using PE dry powder, strategic acquirer activity, and sector 
+consolidation pattern analysis. 
+  
+5.3.1  Model Inputs 
+• PE Dry Powder by Sector: Total uncommitted capital at PE firms with a stated focus on the 
+target's GICS sector, sourced from Preqin and PitchBook fund data, updated quarterly. 
+• Strategic Acquirer Watchlist: AI-generated list of the 15 most likely strategic acquirers for the 
+target, based on sector adjacency, product overlap, disclosed M&A strategy statements, and 
+prior acquisition history. Each watchlist acquirer's M&A activity rate (deals per year) is tracked. 
+• Sector Consolidation Velocity: Number of M&A transactions in the target's GICS subsector in 
+the prior 24 months vs. the 24 months before that. Accelerating consolidation indicates 
+heightened competitive bid risk. 
+• Target Profile Attractiveness Score: Composite of Sentiment Radar momentum score, deal size 
+(larger deals have lower competing bid probability due to fewer potential buyers), and ownership 
+structure (PE-backed targets in a fund's harvest period have higher sale probability and known 
+process timelines). 
+  
+5.3.2  Output 
+• Competing Bid Probability (%): Point estimate and 80% confidence interval for a competing bid 
+materialising within 90 days of LOI execution. 
+• Expected Price Uplift Range: If a competing bid emerges, the expected price premium above 
+the initial LOI price, based on Deal Genome auction premium data for the same sector and size. 
+• Top 5 Most Likely Competing Bidders: Named list (from Strategic Acquirer Watchlist) with 
+estimated bid capacity and strategic rationale.
+
+===== PAGE 30 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+  
+E4 
+Temporal 
+Risk 
+Mapper™ 
+PURPOSE 
+Score every diligence risk not just by severity but by when it crystallises — transforming 
+the risk matrix from a static document into a time-aware negotiation strategy tool. 
+  
+The Temporal Risk Mapper is integrated directly into Module 4 (Section 4.4.2) and operates as part of 
+the RAG Diligence Scanner pipeline. Its core innovation is the temporal urgency multiplier applied to 
+every risk severity score. See Section 4.4.2 for the full specification. The Temporal Risk Mapper's time-
+adjusted severity scores are the primary input to the Module 5 Tactics Engine and Negotiation 
+Playbook, ensuring that the deal team prioritises the risks most likely to have an immediate financial 
+impact — not simply the risks with the highest theoretical severity. 
+  
+E5 
+Regulatory 
+Horizon 
+Engine™ 
+PURPOSE 
+Model the probability, timeline, and cost of regulatory review across all applicable 
+jurisdictions simultaneously — including the probability of required divestitures and the 
+critical path to close. 
+  
+5.5.1  Jurisdictions Covered 
+Jurisdiction Regulatory 
+Body 
+Filing Threshold Trigger Key Risk Factor 
+United 
+States 
+DOJ / FTC (HSR 
+Act) 
+Size of Transaction > $119.5M 
+AND Size of Parties test met 
+Second request probability; 
+behavioural vs. structural 
+remedies 
+European 
+Union 
+European 
+Commission 
+Combined worldwide turnover > 
+EUR 5B OR EU turnover 
+thresholds met 
+Phase II investigation; 
+divestiture requirements by 
+market 
+United 
+Kingdom 
+Competition & 
+Markets 
+Authority 
+UK turnover > GBP 70M OR 25%+ 
+share of supply test 
+Phase 2 investigation; 
+provisional findings timeline 
+India Competition 
+Commission of 
+India 
+Combined assets > INR 2,000 Cr 
+or turnover > INR 6,000 Cr 
+Sector-specific sensitivity; 
+CCI modification orders 
+China SAMR Combined global turnover > CNY 
+10B AND China turnover > CNY 
+400M 
+SAMR conditional approvals; 
+technology transfer 
+restrictions 
+United 
+States 
+CFIUS TID US Business; critical tech / 
+infrastructure / personal data / 
+military proximity 
+National security review; 
+mitigation agreements; deal 
+prohibition 
+Germany Bundeskartellamt Combined German turnover > 
+EUR 500M and domestic nexus 
+German domestic market 
+share analysis; remedies 
+Australia ACCC Merger notification (informal 
+process) 
+Public interest test; ACCC 
+informal guidance timeline 
+  
+5.5.2  Predictive Model
+
+===== PAGE 31 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+For each applicable jurisdiction, a logistic regression model trained on the Deal Genome regulatory 
+sub-database estimates the probability of a second request (US) or Phase II investigation (EU, UK) 
+using the following features: combined market share in the primary product market; number of product 
+category overlaps between acquirer and target; transaction EV as a multiple of the regulatory threshold; 
+sector (some sectors — telecom, media, healthcare, defence — have structurally higher investigation 
+rates); and whether the deal involves a private equity acquirer (lower investigation rate vs. strategic). 
+Outputs: probability estimate, 80% confidence interval, and comparable historical cases from the Deal 
+Genome database that most influenced the estimate. 
+  
+E6 
+PMI 
+DNA 
+Score™ 
+PURPOSE 
+Predict post-merger integration friction by workstream before Day 1, using culture 
+compatibility, org structure analysis, leadership profile matching, compensation 
+benchmarking, and technology stack overlap scoring. 
+  
+The PMI DNA Score is fully specified within Module 8 (Section 4.8.2). Its structural importance to the 
+platform is worth emphasising here: the PMI DNA Score is the only feature in the market that converts 
+the post-merger integration plan from a reactive project management exercise into a pre-close 
+intelligence product. By generating the score before closing, the integration team can: 
+• Pre-staff the highest-friction workstreams with experienced integration resources before Day 1 
+• Build specific retention packages for compensation-risk employees identified by the score 
+before the deal closes 
+• Select an ERP migration approach (lift-and-shift vs. clean-sheet) informed by technology 
+compatibility data rather than assumption 
+• Set realistic synergy phasing expectations in the Module 3 Synergy DNA Engine based on 
+predicted integration speed 
+  
+PMI DNA Score outcomes are written back to the Deal Genome at 12, 24, and 36 months post-close, 
+creating a compounding feedback loop that improves the score's predictive accuracy with every 
+completed integration.
+
+===== PAGE 32 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+6.  Security, Compliance & Data Governance 
+6.1  Data Isolation Architecture 
+M&A deal data is among the most price-sensitive information in financial markets. A data leak prior to a 
+public announcement constitutes material non-public information (MNPI) and triggers securities law 
+liability. The Deal OS is architected from first principles around strict data isolation: 
+• All deal data is stored in deal-scoped PostgreSQL schemas. Cross-deal data access is 
+architecturally prohibited — a user credentialed to Deal A cannot query any table in Deal B's 
+schema. 
+• All VDR documents are stored in deal-scoped AWS S3 prefixes with bucket policies enforcing 
+that only IAM roles associated with that specific deal have GetObject permissions. 
+• FAISS vector stores for the AI diligence scanner are session-scoped, in-memory objects. They 
+are never written to disk or any database. They are destroyed when the FastAPI session 
+terminates. Periodic automated tests (run on every deployment) verify that no vector store data 
+persists beyond the session boundary. 
+• No data from any client Virtual Data Room is used to fine-tune, update, or influence any external 
+AI model. The LLM APIs (Claude and GPT-4-turbo) are accessed via the Anthropic and OpenAI 
+API respectively, which provide contractual data processing agreements prohibiting training use 
+of API-submitted data. 
+• The Deal Genome feedback loop records only anonymised, non-identifying outcome metrics 
+(sector, size tier, deal structure, outcome percentages). No company names, counterparty 
+identities, or financial details from client deals are stored in the comparables database. 
+  
+6.2  Audit Logging 
+Every user action in the platform is timestamped and written to an immutable audit log (deals.audit_log) 
+using an append-only PostgreSQL trigger. Logged events include: 
+• All valuation model parameter changes (field name, old value, new value, user ID, timestamp) 
+• All document uploads (filename, file hash, uploader ID, timestamp) 
+• All AI recommendation acceptances and overrides (recommendation type, accepted/overridden, 
+override rationale) 
+• All LOI and NDA generation events (version number, generating user, timestamp) 
+• All pitchbook generation events 
+• All RBAC-gated access attempts (successful and denied, with requesting user and resource) 
+• All walk-away price changes (old value, new value, authorising MD, timestamp) 
+Audit logs are retained for a minimum of 7 years and are exportable in structured format for SEC, FCA, 
+or SEBI regulatory review. Audit log tables are protected by a separate database role that permits 
+INSERT and SELECT only — no UPDATE or DELETE is permitted, ensuring log immutability. 
+  
+6.3  Role-Based Access Control (RBAC) Matrix 
+  
+Feature / Data Analyst Associate / 
+VP 
+Director Managing Director 
+Long List — View and filter Yes Yes Yes Yes 
+Short List — Promote targets No VP+ Yes Yes Yes
+
+===== PAGE 33 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+Financial model — View base 
+case 
+Yes Yes Yes Yes 
+Financial model — Edit 
+assumptions 
+No VP+ Yes Yes Yes 
+Bull / Bear scenario run No VP+ Yes Yes Yes 
+Deal Genome Match Score — 
+View 
+No No No Yes 
+Competing Bid Oracle score — 
+View 
+No VP+ Yes Yes Yes 
+Walk-Away Price — View No No No Yes 
+LOI Generation and 
+Transmission 
+No No No Yes 
+NDA Generation No VP+ Draft 
+only 
+Draft only Full access 
+VDR Documents — Upload Yes Yes Yes Yes 
+VDR Q&A Interface Yes Yes Yes Yes 
+Diligence Findings — Edit 
+severity 
+No VP+ Yes Yes Yes 
+Negotiation War Room — Live 
+edit 
+No VP+ Yes Yes Yes 
+Negotiation limits — View No No No Yes 
+Regulatory Horizon Engine — 
+Full output 
+Summary 
+only 
+Yes Yes Yes 
+Pitchbook Generation No VP+ Yes Yes Yes 
+PMI Dashboard — Edit synergy 
+actuals 
+No Yes (own 
+workstream) 
+Yes Yes 
+Audit Log — View No No Yes Yes 
+Deal Genome Feedback — 
+Submit 
+No No No Yes 
+  
+6.4  Encryption & Infrastructure Security 
+• Data at rest: AES-256 server-side encryption for all AWS S3 objects (KMS-managed keys, per-
+deal key rotation annually). PostgreSQL RDS encryption at rest using AWS KMS. 
+• Data in transit: TLS 1.3 enforced for all client-server communication and all API calls to external 
+data providers. 
+• Application security: AWS WAF with OWASP Top 10 rule sets deployed in front of all 
+application load balancers. SQL injection, XSS, and CSRF protection enforced at the FastAPI 
+middleware layer. 
+• Secrets management: All API keys and database credentials stored in AWS Secrets Manager 
+with automatic 90-day rotation. Zero hardcoded secrets in any codebase or container image.
+
+===== PAGE 34 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+• Penetration testing: Annual third-party penetration test with findings remediation SLA of 30 days 
+(Critical), 60 days (High), 90 days (Medium). 
+• SOC 2 Type II: Target compliance by Sprint 6 completion. Controls framework aligned to Trust 
+Services Criteria (Security, Availability, Confidentiality).
+
+===== PAGE 35 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+7.  Engineering Roadmap & Sprint Plan 
+7.1  Sprint Execution Plan 
+  
+Sprint Duration Deliverables Modules 
+Addressed 
+Status 
+S1 6 weeks DCF Calculator, Synergy Engine (basic), 
+Financial CSV Ingestion, AI Document 
+Scanner UI, FAISS RAG pipeline, Severity 
+Matrix dashboard 
+M2, M3, M4 COMPLETE 
+S2 6 weeks Deal Structuring AI, Walk-Away Price 
+engine, Negotiation Script Generator, Auto-
+Pitchbook (python-pptx), Jurisdiction 
+Checker (threshold rules), LBO Calculator 
+M5, M6, M7 COMPLETE 
+S3 8 weeks Deal Genome database build and population 
+(50K records), Composite Scoring Engine, 
+Bloomberg/CapIQ API integration, 
+Sentiment Radar NLP pipeline (all 6 
+sources), Competitive Bid Oracle v1 
+M1, E1, E2, E3 IN 
+PROGRESS 
+S4 8 weeks Live Negotiation War Room (WebSocket 
+layer, multi-party canvas, Concession 
+Heatmap), AI Negotiation Coach (Claude 
+integration), Bid Strategy Simulator (Monte 
+Carlo), Dynamic Capital Markets Intelligence 
+feed 
+M5, M6, E3 UPCOMING 
+S5 8 weeks Regulatory Horizon Engine (probabilistic 
+model, all 8 jurisdictions), CFIUS Screening 
+Module, Temporal Risk Mapper (time-to-
+trigger parsing and urgency multiplier), 
+Closing Checklist automation 
+M4, M7, E4, E5 UPCOMING 
+S6 8 weeks PMI DNA Score (all 5 components), 
+PostgreSQL 100-Day PMI Dashboard, 
+Synergy Realization Tracker, Deal Genome 
+Feedback Loop, 100-Day Report Generator, 
+Deal Momentum Score (post-close) 
+M8, E6 UPCOMING 
+S7 6 weeks SOC 2 Type II controls implementation, 
+penetration testing remediation, RBAC audit 
+and hardening, full audit log immutability 
+enforcement, AWS WAF deployment, 
+Secrets Manager migration 
+All Modules UPCOMING 
+S8 6 weeks Performance optimisation (FAISS query 
+latency < 800ms, pitchbook generation < 
+45s), Bloomberg data refresh pipeline 
+optimisation, Deal Genome feedback loop 
+automation, enterprise pilot onboarding (2 
+clients) 
+All Modules UPCOMING 
+  
+7.2  Technical Milestones & KPIs
+
+===== PAGE 36 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+  
+KPI Target Measurement Method Owner 
+FAISS diligence 
+query latency 
+< 800ms p95 AWS CloudWatch custom metric Backend 
+Lead 
+PDF ingestion 
+throughput 
+> 100 
+docs/min 
+Celery task queue metrics Backend 
+Lead 
+Pitchbook 
+generation time 
+< 45 seconds API response time logging Backend 
+Lead 
+Sentiment Radar 
+coverage 
+> 80% of 
+signals 
+available per 
+target 
+deals.sentiment_reports.data_coverage_pct 
+average 
+AI Lead 
+Deal Genome match 
+accuracy 
+Top-20 
+matched deals 
+include 3+ 
+outcome-
+similar deals 
+vs. random 
+baseline 
+A/B test on historical outcomes AI Lead 
+LOI generation 
+accuracy 
+0 errors in 
+populated 
+fields per 100 
+LOIs 
+QA review of generated LOIs in staging Product Lead 
+RBAC enforcement 0 
+unauthorized 
+data 
+exposures per 
+quarter 
+Penetration test + automated RBAC unit 
+tests 
+Security Lead 
+Audit log 
+completeness 
+100% of 
+logged event 
+types covered 
+Automated log completeness test on every 
+deployment 
+Backend 
+Lead 
+API uptime 99.9% 
+monthly 
+AWS CloudWatch availability alarm DevOps Lead 
+Time-to-value for 
+new deal 
+< 4 hours from 
+deal creation 
+to first Short 
+List 
+User session analytics Product Lead
+
+===== PAGE 37 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+8.  Data Governance & Compliance Framework 
+8.1  Data Classification 
+Data Class Examples Storage Retention Policy 
+Deal 
+Confidential 
+VDR documents, financial 
+models, valuation outputs, 
+negotiation limits, LOIs, 
+NDAs 
+AWS S3 (encrypted), 
+PostgreSQL (encrypted) 
+7 years post-deal close 
+or break, then secure 
+deletion 
+Deal 
+Intelligence 
+Diligence findings, risk 
+matrix, Explainability Cards, 
+Q&A logs 
+PostgreSQL (encrypted) 7 years post-deal close 
+or break 
+Market Data Bloomberg/CapIQ live 
+feeds, loan market data, 
+regulatory filing data 
+PostgreSQL (short-term 
+cache, 30-day rolling) 
+30 days (live data); Deal 
+Genome records 
+retained indefinitely in 
+anonymised form 
+Sentiment 
+Signals 
+Glassdoor data, LinkedIn 
+hiring data, patent data, 
+news NLP outputs 
+PostgreSQL (per-deal 
+sentiment_reports) 
+7 years post-deal close 
+or break 
+Audit Logs All user actions, RBAC 
+access events, model 
+parameter changes 
+PostgreSQL (append-only, 
+immutable) 
+Minimum 7 years, 
+indefinitely where 
+required by regulation 
+Deal Genome 
+Records 
+Anonymised deal outcome 
+metrics (no company names 
+or client identification) 
+PostgreSQL 
+deal_genome.comparables 
+Indefinite — core 
+platform intelligence 
+asset 
+User & Auth 
+Data 
+User profiles, RBAC roles, 
+session tokens 
+PostgreSQL (user 
+schema), AWS Secrets 
+Manager 
+Duration of employment 
++ 2 years 
+  
+8.2  Regulatory Compliance Obligations 
+• SEC Regulation FD and MNPI: All deal data is treated as MNPI from the moment a target is 
+identified. Information barriers (Chinese walls) are enforced at the deal-schema level — users 
+credentialed to a specific deal cannot access data for any other deal in the platform. 
+• GDPR and UK GDPR: All personal data of EU/UK individuals processed in the platform 
+(management team profiles, employee review data) is subject to GDPR data subject rights. The 
+platform provides a data subject access request workflow and automated anonymisation for 
+data deletion requests. 
+• DPDPA (India): Personal data processed for CCI and Indian deal parties is subject to the Digital 
+Personal Data Protection Act 2023. Consent records maintained in the audit log. 
+• SOX Compliance for Public Acquirers: All valuation parameter changes, model approvals, and 
+board presentation generation events are audit-logged with the approving MD identity and 
+timestamp, supporting Sarbanes-Oxley Section 302 CEO/CFO certification obligations. 
+• Anti-Money Laundering (AML): The platform does not perform KYC/AML checks directly, but all 
+deal records include a field for the acquirer's external AML clearance reference number for the 
+target, which is required to be populated before LOI generation is permitted.
+
+===== PAGE 38 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+9.  Product Success Metrics & Definition of Done 
+9.1  Platform-Level Success Metrics 
+Metric Definition Target (Year 1) Target (Year 2) 
+Deal break prediction 
+accuracy 
+Precision of Deal Genome deal-
+break probability at the 50% 
+threshold vs. actual outcomes 
+> 65% precision > 75% precision 
+Synergy prediction 
+calibration 
+Mean absolute error of Synergy 
+DNA Engine base-case predictions 
+vs. 24-month realised synergies 
+< 25% MAE < 18% MAE 
+Diligence coverage 
+rate 
+Percentage of deal-critical clauses 
+identified by RAG scanner vs. 
+external counsel review 
+> 85% > 92% 
+Pitchbook adoption 
+rate 
+Percentage of deals where the 
+Auto-Pitchbook is used as the 
+primary board presentation without 
+major manual rework 
+> 60% > 80% 
+Time-to-Short-List 
+reduction 
+Reduction in analyst hours for initial 
+market mapping vs. pre-platform 
+baseline 
+> 60% reduction > 75% reduction 
+Time-to-Diligence-
+Report reduction 
+Reduction in hours to produce initial 
+diligence risk summary vs. pre-
+platform baseline 
+> 50% reduction > 65% reduction 
+PMI DNA Score 
+accuracy 
+Correlation between PMI DNA 
+Score friction prediction by 
+workstream and integration team's 
+100-day assessment 
+> 0.65 Pearson 
+r 
+> 0.75 Pearson r 
+Net Promoter Score NPS from deal team users 
+surveyed after deal close 
+> 45 > 60 
+Platform uptime Monthly availability > 99.9% > 99.95% 
+Security incidents Critical or High severity security 
+incidents per year 
+0 0 
+  
+9.2  Definition of Done — Full Platform 
+The QuantumBlack M&A Deal OS v3.0 is considered feature-complete when all of the following 
+conditions are met: 
+• All eight deal modules are fully functional, data-linked, and RBAC-enforced in the production 
+environment. 
+• All six proprietary AI engines are operational with documented accuracy benchmarks validated 
+against held-out historical data. 
+• The Deal Genome database contains a minimum of 50,000 records with validated sector, size, 
+structure, and outcome data. 
+• The Live Negotiation War Room supports a minimum of 10 simultaneous participants with sub-
+500ms sync latency.
+
+===== PAGE 39 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+• The Auto-Pitchbook generates a complete 12-section board presentation in under 45 seconds 
+with zero unpopulated fields. 
+• All RBAC rules are enforced at the API middleware layer and validated by automated 
+penetration tests with zero bypass findings. 
+• The full audit log covers 100% of defined loggable events, verified by automated log 
+completeness tests on every deployment. 
+• SOC 2 Type II audit has been completed with no exceptions on Security, Availability, and 
+Confidentiality Trust Service Criteria. 
+• Two enterprise pilot clients have completed a minimum of one full deal lifecycle (M1 through 
+M8) on the platform and provided feedback incorporated into the product.
+
+===== PAGE 40 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+10.  Glossary of Terms 
+  
+Term Definition 
+CIM Confidential Information Memorandum — a detailed overview of a target company 
+prepared by the target's investment bank for distribution to potential acquirers 
+under NDA. 
+DSCR Debt Service Coverage Ratio — EBITDA (or operating cash flow) divided by total 
+debt service (interest plus amortisation). A key covenant metric in leveraged 
+finance. 
+Earn-Out A deal structure where a portion of the purchase price is contingent on the target's 
+future financial performance, paid after close. 
+EDGAR Electronic Data Gathering, Analysis, and Retrieval system — the SEC's public 
+database of all US public company filings. 
+EBITDA Earnings Before Interest, Tax, Depreciation, and Amortisation — the primary 
+profitability metric in M&A valuation. 
+EV Enterprise Value — the total acquisition cost of a business: equity value plus net 
+debt (total debt minus cash). 
+FAISS Facebook AI Similarity Search — an open-source library for efficient similarity 
+search and clustering of dense vectors. Used as the in-memory vector store for the 
+RAG diligence pipeline. 
+FinBERT A BERT-based NLP model fine-tuned on financial text for sentiment analysis of 
+earnings reports, analyst notes, and news articles. 
+Football Field An investment banking valuation summary chart showing EV ranges from multiple 
+methodologies as horizontal bars on a single chart. 
+GICS Global Industry Classification Standard — a taxonomy developed by MSCI and 
+S&P for classifying companies into sectors and subsectors. 
+HSR Act Hart-Scott-Rodino Antitrust Improvements Act (US) — requires pre-merger 
+notification to the FTC and DOJ for transactions above certain size thresholds. 
+IOI Indication of Interest — a non-binding expression of acquisition interest, typically 
+submitted before the LOI and before full due diligence. 
+IRR Internal Rate of Return — the annualised return on an investment; the discount 
+rate at which NPV equals zero. The primary return metric for financial sponsors.  
+LBO Leveraged Buyout — an acquisition financed predominantly with debt, typically by 
+a private equity firm, using the target's own cash flows to service and repay the 
+debt. 
+LOI Letter of Intent — a formal non-binding document outlining the key terms of a 
+proposed acquisition, including price, structure, exclusivity period, and conditions. 
+LTM Last Twelve Months — a trailing financial period representing the most recent 12 
+months of financial performance. 
+MOIC Multiple on Invested Capital — total equity proceeds divided by total equity 
+invested; the absolute return multiple for financial sponsors. 
+NDA Non-Disclosure Agreement (also Confidentiality Agreement) — a legal agreement 
+restricting use and disclosure of confidential deal information.
+
+===== PAGE 41 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026 
+PMI Post-Merger Integration — the operational process of combining two companies 
+after an acquisition closes. 
+POCI Personally Identifiable Data on US government personnel — a CFIUS-specific 
+category of sensitive personal data. 
+RAG Retrieval-Augmented Generation — an AI architecture that retrieves relevant 
+document chunks from a vector store and provides them as context to an LLM for 
+generation. 
+R&W Insurance Representation and Warranty Insurance — an insurance product that covers 
+losses arising from breaches of representations and warranties in an acquisition 
+agreement. 
+SOFR Secured Overnight Financing Rate — the primary benchmark rate for US dollar 
+leveraged loans, replacing LIBOR. 
+TID US 
+Business 
+Technology, Infrastructure, and Data US Business — a CFIUS category of US 
+businesses subject to mandatory filing requirements for certain foreign investment 
+transactions. 
+VDR Virtual Data Room — a secure online repository where the target company makes 
+confidential documents available for acquirer due diligence review. 
+WACC Weighted Average Cost of Capital — the blended cost of a company's equity and 
+debt financing, used as the discount rate in DCF valuation.
+
+===== PAGE 42 =====
+QUANTUMBLACK  M&A DEAL OS  —  PRD v3.0  |  CONFIDENTIAL 
+STRICTLY CONFIDENTIAL — Lead Architect: Kavish Narendra Raut, RVITM  |  May 2026

@@ -1,0 +1,58 @@
+{
+  "top_companies": [
+    {
+      "name": "POLICY MANAGEMENT SYSTEMS CORP",
+      "filings": 11
+    },
+    {
+      "name": "ACTAVA GROUP INC",
+      "filings": 9
+    },
+    {
+      "name": "MORGAN KEEGAN INC",
+      "filings": 7
+    },
+    {
+      "name": "SUN CO INC",
+      "filings": 7
+    },
+    {
+      "name": "SAFECARD SERVICES INC",
+      "filings": 7
+    },
+    {
+      "name": "AMERICAN MEDICAL HOLDINGS INC",
+      "filings": 7
+    },
+    {
+      "name": "CITIZENS UTILITIES CO",
+      "filings": 7
+    },
+    {
+      "name": "MEAD CORP",
+      "filings": 7
+    },
+    {
+      "name": "ALLTEL CORP",
+      "filings": 7
+    },
+    {
+      "name": "SOUTHERN UNION CO",
+      "filings": 6
+    }
+  ],
+  "filings_by_year": [
+    {
+      "year": 1994,
+      "filings": 2528
+    },
+    {
+      "year": 1995,
+      "filings": 2466
+    },
+    {
+      "year": 1993,
+      "filings": 6
+    }
+  ]
+}

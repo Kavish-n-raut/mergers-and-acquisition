@@ -1,0 +1,9 @@
+id,name,city,country,sector,ticker,signal_score,mna_signal,confidence,data_source
+sample-ptc,PTC Inc.,"Boston, MA",United States,Industrial Software,PTC,24.0,Low,Low,Local sample fallback; verify with SEC EDGAR and company filings before use
+sample-honeywell,Honeywell International Inc.,"Charlotte, NC",United States,Industrial Technology,HON,22.0,Low,Low,Local sample fallback; verify with SEC EDGAR and company filings before use
+sample-emerson-electric,Emerson Electric Co.,"St. Louis, MO",United States,Industrial Technology,EMR,20.0,Low,Low,Local sample fallback; verify with SEC EDGAR and company filings before use
+sample-rockwell-automation,"Rockwell Automation, Inc.","Milwaukee, WI",United States,Industrial Automation,ROK,18.0,Low,Low,Local sample fallback; verify with SEC EDGAR and company filings before use
+sample-siemens-ag,Siemens AG,Munich,Germany,Industrial Automation,SIE.DE,0.0,Insufficient public data,Insufficient public data,Local sample fallback; verify with official filings and exchange data before use
+sample-abb-ltd,ABB Ltd,Zurich,Switzerland,Electrification and Automation,ABBN.SW,0.0,Insufficient public data,Insufficient public data,Local sample fallback; verify with official filings and exchange data before use
+sample-schneider-electric,Schneider Electric SE,Rueil-Malmaison,France,Energy Management and Automation,SU.PA,0.0,Insufficient public data,Insufficient public data,Local sample fallback; verify with official filings and exchange data before use
+sample-ge-vernova,GE Vernova Inc.,"Cambridge, MA",United States,Energy Technology,GEV,0.0,Insufficient public data,Insufficient public data,Local sample fallback; verify with SEC EDGAR and company filings before use

@@ -1,0 +1,49 @@
+# Render.com Blueprint — free-tier deploy of QuantumBlack M&A Deal OS.
+# One-time setup: push this repo to GitHub, then in Render: New > Blueprint > pick the repo.
+# You MUST fill the `sync: false` env vars in the Render dashboard (they aren't stored here).
+#
+# CAVEAT: backend/requirements.txt pulls a large ML stack (torch/transformers/faiss via
+# sentence-transformers, ~2-3GB). If the free-tier Docker build exceeds limits, either
+# upgrade the instance, or build a slim image without those packages (FinBERT + semantic
+# retrieval then fall back to keyword mode automatically). See DEPLOY.md.
+
+services:
+  - type: web
+    name: madealos-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    # Render injects $PORT; bind to it (the Dockerfile's default 8000 is for local use).
+    dockerCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: DATABASE_URL          # Neon/Supabase connection string (postgresql://...)
+        sync: false
+      - key: AUTH_ENFORCED         # require real JWT login in production
+        value: "true"
+      - key: JWT_SECRET            # generated once by Render, kept out of source
+        generateValue: true
+      - key: DEMO_PASSWORD
+        sync: false
+      - key: CORS_ORIGINS          # set to your deployed frontend URL(s)
+        sync: false
+      - key: FINNHUB_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: PATENTSVIEW_API_KEY
+        sync: false
+
+  - type: web
+    name: madealos-frontend
+    runtime: static
+    buildCommand: npm ci --prefix frontend && npm run build --prefix frontend
+    staticPublishPath: ./frontend/dist
+    envVars:
+      # Point the SPA at the deployed backend (api.js falls back to localhost otherwise).
+      - key: VITE_API_BASE_URL
+        sync: false
+    routes:
+      - type: rewrite            # SPA: send all paths to index.html for react-router
+        source: /*
+        destination: /index.html

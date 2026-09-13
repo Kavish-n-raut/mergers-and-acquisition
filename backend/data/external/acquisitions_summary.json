@@ -1,0 +1,54 @@
+{
+  "top_operators": [
+    {
+      "name": "Microsoft",
+      "deals": 258
+    },
+    {
+      "name": "Google",
+      "deals": 244
+    },
+    {
+      "name": "Hp",
+      "deals": 129
+    },
+    {
+      "name": "Apple",
+      "deals": 123
+    },
+    {
+      "name": "Amazon",
+      "deals": 108
+    },
+    {
+      "name": "Twitter",
+      "deals": 65
+    },
+    {
+      "name": "Ebay",
+      "deals": 41
+    },
+    {
+      "name": "Blackberry",
+      "deals": 32
+    }
+  ],
+  "deals_by_country": [
+    {
+      "country": "-",
+      "deals": 976
+    },
+    {
+      "country": "United States",
+      "deals": 19
+    },
+    {
+      "country": "United Kingdom",
+      "deals": 4
+    },
+    {
+      "country": "South Korea",
+      "deals": 1
+    }
+  ]
+}

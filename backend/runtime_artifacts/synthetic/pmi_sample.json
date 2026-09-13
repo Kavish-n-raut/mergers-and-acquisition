@@ -1,0 +1,13 @@
+{
+  "deal_name": "Project Orion",
+  "workstreams": [
+    {"stream": "Finance", "owner": "Controller", "day_30_status": "In Progress"},
+    {"stream": "HR", "owner": "People Ops", "day_30_status": "Planned"},
+    {"stream": "Tech", "owner": "CTO Office", "day_30_status": "In Progress"}
+  ],
+  "kpis": {
+    "synergy_capture_target_pct": 35,
+    "system_migration_readiness_pct": 60,
+    "retention_risk_score": 4
+  }
+}

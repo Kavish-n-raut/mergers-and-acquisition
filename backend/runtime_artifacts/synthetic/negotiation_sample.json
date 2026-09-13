@@ -1,0 +1,17 @@
+{
+  "deal_name": "Project Orion",
+  "rounds": [
+    {
+      "round": 1,
+      "buyer_offer": 45000000,
+      "seller_ask": 56000000,
+      "notes": "Seller signaling strategic scarcity"
+    },
+    {
+      "round": 2,
+      "buyer_offer": 49000000,
+      "seller_ask": 53500000,
+      "notes": "Buyer requests escrow linked to litigation"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "deal_name": "Project Orion",
+  "documents": [
+    {
+      "document_id": "VDR-001",
+      "category": "Corporate",
+      "title": "Certificate of Incorporation",
+      "risk_hint": "change_of_control"
+    },
+    {
+      "document_id": "VDR-014",
+      "category": "Commercial Contracts",
+      "title": "Top 10 Customer MSA",
+      "risk_hint": "termination_rights"
+    },
+    {
+      "document_id": "VDR-025",
+      "category": "Debt",
+      "title": "Credit Agreement",
+      "risk_hint": "debt_covenants"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "top_industries": [
+    {
+      "industry": "higher education",
+      "companies": 154
+    },
+    {
+      "industry": "information technology and services",
+      "companies": 122
+    },
+    {
+      "industry": "hospital & health care",
+      "companies": 121
+    },
+    {
+      "industry": "retail",
+      "companies": 103
+    },
+    {
+      "industry": "financial services",
+      "companies": 98
+    },
+    {
+      "industry": "banking",
+      "companies": 84
+    },
+    {
+      "industry": "telecommunications",
+      "companies": 72
+    },
+    {
+      "industry": "government administration",
+      "companies": 71
+    },
+    {
+      "industry": "oil & energy",
+      "companies": 61
+    },
+    {
+      "industry": "insurance",
+      "companies": 54
+    }
+  ],
+  "top_countries": [
+    {
+      "country": "united states",
+      "companies": 979
+    },
+    {
+      "country": "united kingdom",
+      "companies": 120
+    },
+    {
+      "country": "france",
+      "companies": 68
+    },
+    {
+      "country": "india",
+      "companies": 66
+    },
+    {
+      "country": "canada",
+      "companies": 56
+    },
+    {
+      "country": "switzerland",
+      "companies": 40
+    },
+    {
+      "country": "netherlands",
+      "companies": 39
+    },
+    {
+      "country": "germany",
+      "companies": 38
+    },
+    {
+      "country": "brazil",
+      "companies": 31
+    },
+    {
+      "country": "australia",
+      "companies": 30
+    }
+  ]
+}

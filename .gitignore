@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+
+# Env / secrets
+.env
+*.env.local
+
+# Build artifacts
+generated_pitchbooks/
+*.pptx
+*.docx
+
+# Logs (dev servers can produce very large error logs)
+*.log
+
+# Local dev database (SQLite)
+*.db
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
