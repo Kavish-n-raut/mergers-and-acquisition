@@ -9,6 +9,27 @@ This repository contains a functional implementation MVP derived from `QuantumBl
 - war-room messaging (REST + WebSocket)
 - deal persistence + audit logs
 
+## 🚀 Live Demo
+
+**App:** https://mergers-and-acquisition-ashy.vercel.app
+
+**Sign in** with any role — username is the role, password is `<username>@100`:
+
+| Username | Password | Role |
+|---|---|---|
+| `director` | `director@100` | Director (recommended) |
+| `analyst` · `associate` · `vp` · `md` · `admin` | `<username>@100` | escalating access |
+
+> Demo credentials only — a real deployment must replace the demo user store and rotate `JWT_SECRET`.
+
+**Deployed architecture (all free tier):**
+- **Frontend:** React + Vite on **Vercel**
+- **Backend:** FastAPI (Docker) on **Render**
+- **Database:** **Neon** serverless Postgres
+- **LLM:** **Groq** (`openai/gpt-oss-120b`, free) for document/strategy generation
+- **Live data (free, no paid subscriptions):** Finnhub (market), GDELT (news), USPTO (patents), SEC EDGAR (real M&A filings)
+- First request after ~15 min idle may take ~40s (Render free-tier cold start); a scheduled ping keeps it warm.
+
 ## Stack
 - Backend: Python, FastAPI, Pydantic v2, SQLAlchemy
 - AI/RAG: local deterministic pipeline by default, Anthropic Claude optional
@@ -150,4 +171,4 @@ RUN_SEMANTIC_TESTS=1 pytest -q tests/test_embeddings.py
 - DB defaults to SQLite for local dev. Set `DATABASE_URL` for PostgreSQL.
 - Role-based access is enforced at the API layer. Two modes:
   - **Dev (default, `AUTH_ENFORCED=false`)**: send role via the `x-user-role` header (`analyst|associate|vp|director|md|admin`).
-  - **Auth (`AUTH_ENFORCED=true`)**: obtain a signed JWT from `POST /api/v1/auth/login` (demo users are the role names above, password `DEMO_PASSWORD`), then send `Authorization: Bearer <token>`. A valid Bearer token always takes precedence over the header. Change `JWT_SECRET` and the demo password before any real deployment.
+  - **Auth (`AUTH_ENFORCED=true`, used in the live deployment)**: obtain a signed JWT from `POST /api/v1/auth/login` (demo users are the role names above, password `<username>@100`, e.g. `director@100`), then send `Authorization: Bearer <token>`. A valid Bearer token always takes precedence over the header. Tokens expire after `JWT_EXPIRE_MINUTES` (default 8h); an expired/invalid token returns 401 and the UI drops back to the login screen. Change `JWT_SECRET` and the demo passwords before any real deployment.
