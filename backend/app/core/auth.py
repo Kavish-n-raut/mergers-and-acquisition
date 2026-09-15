@@ -85,17 +85,30 @@ def decode_access_token(token: str, *, secret: str | None = None) -> dict[str, A
     except ValueError as exc:
         raise AuthError("Malformed token.") from exc
 
+    # Decode the signature segment inside the guard: a garbage/tampered token can
+    # carry a non-base64 signature, and an unguarded decode here would surface as a
+    # 500 instead of a clean 401.
     signing_input = f"{header_seg}.{payload_seg}"
     expected = hmac.new(secret.encode("utf-8"), signing_input.encode("ascii"), hashlib.sha256).digest()
-    if not hmac.compare_digest(expected, _b64url_decode(signature_seg)):
+    try:
+        actual_signature = _b64url_decode(signature_seg)
+    except Exception as exc:
+        raise AuthError("Malformed token.") from exc
+    if not hmac.compare_digest(expected, actual_signature):
         raise AuthError("Invalid token signature.")
 
     try:
         payload = json.loads(_b64url_decode(payload_seg))
     except Exception as exc:
         raise AuthError("Invalid token payload.") from exc
+    if not isinstance(payload, dict):
+        raise AuthError("Invalid token payload.")
 
-    if int(payload.get("exp", 0)) < int(time.time()):
+    try:
+        expires_at = int(payload.get("exp", 0))
+    except (TypeError, ValueError) as exc:
+        raise AuthError("Invalid token payload.") from exc
+    if expires_at < int(time.time()):
         raise AuthError("Token expired.")
     return payload
 
