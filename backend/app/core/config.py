@@ -64,7 +64,7 @@ class Settings(BaseSettings):
     # Authentication (JWT). auth_enforced=False keeps the legacy x-user-role header
     # working for local dev/tests; set AUTH_ENFORCED=true to require a valid Bearer token.
     jwt_secret: str = Field(default="dev-insecure-secret-change-me", alias="JWT_SECRET")
-    jwt_expire_minutes: int = Field(default=480, alias="JWT_EXPIRE_MINUTES")
+    jwt_expire_minutes: int = Field(default=10080, alias="JWT_EXPIRE_MINUTES")  # 7 days (override via JWT_EXPIRE_MINUTES env)
     auth_enforced: bool = Field(default=False, alias="AUTH_ENFORCED")
     demo_password: str = Field(default="changeme-demo", alias="DEMO_PASSWORD")
 
