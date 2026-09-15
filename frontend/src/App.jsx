@@ -66,6 +66,14 @@ export default function App() {
       .catch(() => setMarketCards(fallbackMarketCards));
   }, []);
 
+  // When any API call reports the session expired (401), drop back to the login
+  // screen instead of leaving the user on a stale, empty dashboard.
+  useEffect(() => {
+    const onExpired = () => setUser(null);
+    window.addEventListener("auth:expired", onExpired);
+    return () => window.removeEventListener("auth:expired", onExpired);
+  }, []);
+
   const handleLogout = () => {
     logout();
     setUser(null);

@@ -52,6 +52,27 @@ export function logout() {
 const _restored = getSession();
 if (_restored?.token) applyToken(_restored.token);
 
+// A stored JWT expires (8h) while its presence still gates the UI, so a returning
+// user would otherwise sit on a stale dashboard while every call 401s. On any 401
+// (except the login call itself), clear the session and signal the app to show the
+// login screen — a clean "your session expired, sign in again" instead of broken data.
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const status = error?.response?.status;
+    const url = error?.config?.url || "";
+    if (status === 401 && !url.includes("/auth/login")) {
+      logout();
+      try {
+        window.dispatchEvent(new Event("auth:expired"));
+      } catch {
+        /* non-browser context */
+      }
+    }
+    return Promise.reject(error);
+  },
+);
+
 export async function getHealth() {
   const res = await api.get("/api/v1/health");
   return res.data;
